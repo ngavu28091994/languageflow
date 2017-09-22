@@ -1,7 +1,4 @@
 import numpy
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC, NuSVC, LinearSVC
-import matplotlib.pyplot as plt
 
 from underthesea_flow.experiment import Experiment
 from underthesea_flow.transformer.tagged import TaggedTransformer
@@ -13,7 +10,7 @@ class Flow:
         self.models = []
         self.lc_range = [1]
         self.result = []
-        self.validation = TrainTestSplitValidation()
+        self.validation_method = TrainTestSplitValidation()
         self.scores = set()
 
     def data(self, X=None, y=None, sentences=None):
@@ -38,15 +35,15 @@ class Flow:
         self.lc_range = numpy.arange(start, stop, offset)
 
     def set_validation(self, validation):
-        self.validation = validation
+        self.validation_method = validation
 
     def validation(self):
         for i, model in enumerate(self.models):
-            N = [int(i * len(self.Y)) for i in self.lc_range]
+            N = [int(i * len(self.y)) for i in self.lc_range]
             for n in N:
                 X = self.X[:n]
-                Y = self.Y[:n]
-                e = Experiment(X, Y, model.clf, self.validation)
+                y = self.y[:n]
+                e = Experiment(X, y, model.clf, self.validation_method)
                 scores = e.run()
 
     def visualize(self):
