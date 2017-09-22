@@ -17,16 +17,5 @@ class TestTaggedFeature(TestCase):
 
     def test_template2features(self):
         sent = [["Mảnh", "Nc", "B-NP"], ["đất", "N", "I-NP"]]
-        i = 1
-        token = "đất"
-        template2features(
-
-            sent, i, token)
-        actual = ""
-
-    # def test_word2features(self):
-    #     sent = u"Đang tích cực thu xếp chuyến thăm của Tổng thống Donald Trump đến Việt Nam"
-    #     i = 1
-    #     token = ['đất']
-    #     expected = word2features(sent, 3, template)
-    #     actual = ""
+        self.assertEqual(["Mảnh"],  template2features(sent, i=0, token_syntax="T[0]", debug=False))
+        self.assertEqual(["T[0]=Mảnh"], template2features(sent, i=0, token_syntax="T[0]", debug=True))
