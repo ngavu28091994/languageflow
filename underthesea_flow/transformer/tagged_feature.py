@@ -17,7 +17,7 @@
 # a        C
 # sample   D
 # sentence E
-#
+
 
 import re
 
@@ -47,7 +47,7 @@ def apply_function(name, word):
     return functions[name](word)
 
 
-def template2features(sent, i, token, debug=True):
+def template2features(sent, i, token_syntax, debug=True):
     """
     :type token: object
     """
@@ -55,20 +55,24 @@ def template2features(sent, i, token, debug=True):
         [t[0] for t in sent],
         [t[1] for t in sent]
     ]
-    matched = re.match("T\[(?P<index1>\-?\d+)(\,(?P<index2>\-?\d+))?\](\[(?P<column>.*)\])?(\.(?P<function>.*))?", token)
+    matched = re.match("T\[(?P<index1>\-?\d+)(\,(?P<index2>\-?\d+))?\](\[(?P<column>.*)\])?(\.(?P<function>.*))?", token_syntax)
     column = matched.group("column")
     column = int(column) if column else 0
     index1 = int(matched.group("index1"))
     index2 = matched.group("index2")
     index2 = int(index2) if index2 else None
     func = matched.group("function")
+    if debug:
+        prefix = "%s=" % token_syntax
+    else:
+        prefix = ""
     if i + index1 < 0:
-        return ["%s=BOS" % token]
+        return ["%sBOS" % prefix]
     if i + index1 >= len(sent):
-        return ["%s=EOS" % token]
+        return ["%sEOS" % prefix]
     if index2 is not None:
         if i + index2 >= len(sent):
-            return ["%s=EOS" % token]
+            return ["%sEOS" % prefix]
         word = " ".join(columns[column][i + index1: i + index2 + 1])
     else:
         word = sent[i + index1][column]
@@ -76,11 +80,11 @@ def template2features(sent, i, token, debug=True):
         result = apply_function(func, word)
     else:
         result = word
-    return ["%s=%s" % (token, result)]
+    return ["%s%s" % (prefix, result)]
 
 
 def word2features(sent, i, template):
     features = []
-    for token in template:
-        features.extend(template2features(sent, i, token))
+    for token_syntax in template:
+        features.extend(template2features(sent, i, token_syntax))
     return features
