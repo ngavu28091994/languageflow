@@ -29,7 +29,7 @@ class TaggedTransformer:
         return sent2features_2(sentence, self.template)
 
     def format_word(self, sentence):
-        path = join(dirname(dirname(dirname(__file__))), "pipelines", "logs", "punctuation.txt")
+        path = join(dirname(dirname(dirname(__file__))), "underthesea_flow", "transformer", "punctuation.txt")
         punctuations = read(path).split("\n")
         words = []
         for word in sentence.split(" "):

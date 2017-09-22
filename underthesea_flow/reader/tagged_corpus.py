@@ -1,7 +1,5 @@
 from os.path import join
-
 import pandas as pd
-import os
 import io
 from underthesea.util.file_io import read, write
 
@@ -17,16 +15,31 @@ class TaggedCorpus:
         with io.open(filepath, "w", newline="\n", encoding="utf-8") as f:
             f.write(content)
 
-    def _parse_sentence(self, text):
+    # def _parse_sentence(self, text):
+    #     tokens = text.split("\n")
+    #     tokens = [token.split("\t") for token in tokens if str(token).strip() != ""]
+    #     return tokens
+    #     print(0)
+    #
+    # def load(self, filepath):
+    #     content = read(filepath).strip()
+    #     sentences = content.split("\n\n")
+    #     sentences = [self._parse_sentence(str(s).strip()) for s in sentences if str(s).strip() != ""]
+    #     self.sentences = sentences
+    #     print(0)
+
+    def _parse_sentence(self, text, skip_column=None):
         tokens = text.split("\n")
-        tokens = [token.split("\t") for token in tokens if token.strip() != ""]
+        if skip_column is None:
+            tokens = [token.split("\t") for token in tokens if str(token).strip() != ""]
+        else:
+            tokens = [token.split("\t")[(skip_column + 1):] for token in tokens if str(token).strip() != ""]
         return tokens
 
-    def load(self, filepath):
+    def load(self, filepath, skip_column=None):
         content = read(filepath).strip()
         sentences = content.split("\n\n")
-        sentences = [self._parse_sentence(s.strip()) for s in sentences if
-                     s.strip() != ""]
+        sentences = [self._parse_sentence(str(s).strip(), skip_column) for s in sentences if str(s).strip() != ""]
         self.sentences = sentences
 
     def _analyze_field(self, df, id, output_folder=".", n_head=10):
