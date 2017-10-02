@@ -23,3 +23,7 @@ class CRF:
 
         trainer.set_params(self.params)
         trainer.train('model.bin')
+        self.estimator = trainer
+
+    def predict(self, X):
+        return self.estimator
