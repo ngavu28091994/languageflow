@@ -32,6 +32,6 @@ class TfidfDictionaryVectorizer(TfidfVectorizer):
 
     def text2vec(self, text):
         vectorizer = feature_extraction.text.TfidfVectorizer(vocabulary=self.default_vocabulary)
-        vec = vectorizer.fit_transform(text, max_features=self.max_features)
+        vec = vectorizer.fit_transform(text)
         self = vectorizer
         return vec
