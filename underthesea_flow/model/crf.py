@@ -1,12 +1,13 @@
+from underthesea_flow.model import Model
 import pycrfsuite
 
 
-class CRF:
+class CRF(Model):
     def __init__(self, params=None):
         self.estimator = None
         self.params = params
 
-    def fit(self, X, y):
+    def fit(self, X, y, filename=None):
         """Fit FastText according to X, y
 
         Parameters:
@@ -22,8 +23,15 @@ class CRF:
             trainer.append(xseq, yseq)
 
         trainer.set_params(self.params)
-        trainer.train('model.bin')
-        self.estimator = trainer
+        if filename:
+            trainer.train(filename)
+        else:
+            trainer.train('model.bin')
+            tagger = pycrfsuite.Tagger()
+            tagger.open('model.bin')
+            self.estimator = tagger
 
     def predict(self, X):
-        return self.estimator
+        if isinstance(X[0], list):
+            return [self.estimator.tag(x) for x in X]
+        return self.estimator.tag(X)

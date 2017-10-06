@@ -37,29 +37,29 @@ class Flow:
     def set_validation(self, validation):
         self.validation_method = validation
 
-    def validation(self):
+    def train(self):
         for i, model in enumerate(self.models):
             N = [int(i * len(self.y)) for i in self.lc_range]
             for n in N:
                 X = self.X[:n]
                 y = self.y[:n]
-                e = Experiment(X, y, model.clf, self.validation_method)
-                scores = e.run()
+                e = Experiment(X, y, model.estimator, self.scores, self.validation_method)
+                results = e.run()
 
     def visualize(self):
         pass
 
-    def train(self):
+    def train_(self):
         """
         Train dataset with transformer and model
         """
         model = self.models[0]
         model.fit(self.X, self.y)
 
-    def save_model(self, model_name, model_filename):
+    def save_model(self, model_name, filename):
         model = [model for model in self.models if model.name == model_name][0]
-        e = Experiment(self.X, self.Y, model.clf, None)
-        e.save(model_filename)
+        e = Experiment(self.X, self.y, model.estimator, None)
+        e.save_model(filename)
 
     def test(self, X, y_true, model):
         y_predict = model.predict(X)

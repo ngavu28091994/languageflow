@@ -26,11 +26,11 @@ test_requirements = [
 setup(
     name='underthesea_flow',
     version='0.1.0',
-    description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
+    description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",
     author_email='brother.rain.1024@gmail.com',
-    url='https://github.com/rain1024/underthesea_flow',
+    url='https://github.com/magizbox/underthesea_flow',
     packages=find_packages(include=['underthesea_flow']),
     include_package_data=True,
     install_requires=requirements,

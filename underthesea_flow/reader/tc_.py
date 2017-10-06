@@ -18,19 +18,6 @@ class TaggedCorpus:
         with io.open(filepath, "w", newline="\n", encoding="utf-8") as f:
             f.write(content)
 
-    # def _parse_sentence(self, text):
-    #     tokens = text.split("\n")
-    #     tokens = [token.split("\t") for token in tokens if str(token).strip() != ""]
-    #     return tokens
-    #     print(0)
-    #
-    # def load(self, filepath):
-    #     content = read(filepath).strip()
-    #     sentences = content.split("\n\n")
-    #     sentences = [self._parse_sentence(str(s).strip()) for s in sentences if str(s).strip() != ""]
-    #     self.sentences = sentences
-    #     print(0)
-
     def _parse_sentence(self, text, skip_column=None):
         tokens = text.split("\n")
         if skip_column is None:
@@ -81,19 +68,9 @@ class TaggedCorpus:
         return log
 
     def analyze(self, output_folder=".", auto_remove=False):
-        """
-        :type auto_remove: boolean
-        :param boolean auto_remove: auto remove previous files in analyze folder
-        """
         if auto_remove:
-            try:
-                shutil.rmtree(output_folder)
-            except:
-                pass
-        try:
+            shutil.rmtree(output_folder)
             mkdir(output_folder)
-        except:
-            pass
         tokens = [token for sublist in self.sentences for token in sublist]
         df = pd.DataFrame(tokens)
         log = u""
