@@ -12,6 +12,7 @@ class Flow:
         self.result = []
         self.validation_method = TrainTestSplitValidation()
         self.scores = set()
+        self.log_folder = "."
 
     def data(self, X=None, y=None, sentences=None):
         self.X = X
@@ -44,6 +45,7 @@ class Flow:
                 X = self.X[:n]
                 y = self.y[:n]
                 e = Experiment(X, y, model.estimator, self.scores, self.validation_method)
+                e.log_folder = self.log_folder
                 results = e.run()
 
     def visualize(self):

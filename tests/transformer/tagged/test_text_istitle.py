@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
-from models.crf_model.features.feature_2 import word2features, template2features, text_istitle
+
+from underthesea_flow.transformer.tagged_feature import text_istitle
 
 sentence_1 = [(u"Chào", "V"), (u"em", "N"), (u"cô gái", "N"), (u"Lam Hồng", "N")]
 
