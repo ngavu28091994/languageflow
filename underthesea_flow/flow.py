@@ -56,7 +56,7 @@ class Flow:
         Train dataset with transformer and model
         """
         model = self.models[0]
-        model.fit(self.X, self.y)
+        model.clf.fit(self.X, self.y)
 
     def save_model(self, model_name, filename):
         model = [model for model in self.models if model.name == model_name][0]
