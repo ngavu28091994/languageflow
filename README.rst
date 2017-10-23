@@ -16,17 +16,19 @@ Data Readers
 
 Available data readers: `TaggedCorpus`
 
-Scores
-======
+Transformers
+============
 
-Available scores: `f1`, `accuracy`
+Available transformers: `TaggedTransformer`
 
 Models
 ======
 
 Available models: Conditional Random Fields (`CRF`)
 
-Validation Methods
-==================
+Validation
+==========
 
 Available validation methods: TrainTestSplit, CrossValidation
+
+Available scores: `f1`, `accuracy`
