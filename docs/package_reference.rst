@@ -6,8 +6,8 @@ Package Reference
 
 .. automodule:: languageflow.model
 
-SGDClassifier
+ABC
 ----------------------------
 
-.. autoclass:: languageflow.model.sgd.SGDClassifier
+.. autoclass:: languageflow.model.abc.ABC
     :members:
