@@ -10,11 +10,13 @@ Contents:
    installation
    usage
 
+
 .. toctree::
    :maxdepth: 1
    :cation: Package Reference
 
    package_reference
+
 
 .. toctree::
    :maxdepth: 1
@@ -22,6 +24,7 @@ Contents:
    contributing
    authors
    history
+
 
 Indices and tables
 ==================

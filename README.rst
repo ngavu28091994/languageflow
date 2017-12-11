@@ -1,6 +1,6 @@
-=========================
-Underthesea LanguageFlow
-=========================
+============
+LanguageFlow
+============
 
 .. image:: https://img.shields.io/badge/latest-1.1.6-brightgreen.svg
 
