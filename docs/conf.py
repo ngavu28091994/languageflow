@@ -283,7 +283,8 @@ texinfo_documents = [
 
 autodoc_mock_imports = [
     "sklearn",
-    "underthesea"
+    "underthesea",
+    "underthesea.util.file_io"
 ]
 
 intersphinx_mapping = {
