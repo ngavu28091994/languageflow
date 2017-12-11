@@ -42,8 +42,10 @@ import languageflow
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.linkcode',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.napoleon',
+    # 'sphinx.ext.napoleon',
+    'sphinx_gallery.gen_gallery',
     'sphinx.ext.viewcode'
 ]
 
