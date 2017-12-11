@@ -1,7 +1,8 @@
 import abc
+from abc import ABC
 
 
-class Transformer(abc.ABC):
+class Transformer(ABC):
     @abc.abstractmethod
     def transform(self):
         pass
