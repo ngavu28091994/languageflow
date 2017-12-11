@@ -10,5 +10,5 @@ Package Reference
 SGDClassifier
 ----------------------------
 
-.. autoclass:: SGDClassifier
+.. autoclass:: languageflow.model.sgd.SGDClassifier
     :members::
