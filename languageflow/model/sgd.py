@@ -45,3 +45,18 @@ class SGDClassifier(linear_model.SGDClassifier):
         """
         super(SGDClassifier, self).fit(X, y, coef_init, intercept_init,
                                        sample_weight)
+
+    def predict(self, X):
+        """Predict class labels for samples in X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix}, shape = [n_samples, n_features]
+            Samples.
+
+        Returns
+        -------
+        C : array, shape = [n_samples]
+            Predicted class label per sample.
+        """
+        super(SGDClassifier, self).predict(X)
