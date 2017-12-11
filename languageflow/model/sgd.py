@@ -1,7 +1,5 @@
-try:
-    from sklearn import linear_model
-except:
-    pass
+from sklearn import linear_model
+
 
 
 class SGDClassifier(linear_model.SGDClassifier):
