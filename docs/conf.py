@@ -284,7 +284,8 @@ texinfo_documents = [
 autodoc_mock_imports = [
     "sklearn",
     "underthesea",
-    "underthesea.util.file_io"
+    "underthesea.util.file_io",
+    "pycrfsuite"
 ]
 
 intersphinx_mapping = {
