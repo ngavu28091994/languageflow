@@ -4,8 +4,8 @@ from os.path import join
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from languageflow.experiment import Experiment
-from languageflow.transformer.tagged import TaggedTransformer
 from languageflow.transformer.tfidf import TfidfVectorizer
+
 from languageflow.validation.validation import TrainTestSplitValidation
 
 
@@ -30,6 +30,8 @@ class Flow:
 
     def transform(self, transformer):
         self.transformers.append(transformer)
+        from languageflow.transformer.tagged import TaggedTransformer
+
         if isinstance(transformer, TaggedTransformer):
             self.X, self.y = transformer.transform(self.sentences)
         if isinstance(transformer, TfidfVectorizer):
