@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Top-level package for Underthesea Flow."""
+"""Top-level package for LanguageFlow."""
 
 __author__ = """Vu Anh"""
 __email__ = 'brother.rain.1024@gmail.com'

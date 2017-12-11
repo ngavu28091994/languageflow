@@ -25,5 +25,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: rain1024/underthesea_flow
+    repo: undertheseanlp/languageflow
     python: 2.7

@@ -1,4 +1,4 @@
-* Underthesea Flow version:
+* LanguageFlow version:
 * Python version:
 * Operating System:
 

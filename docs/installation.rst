@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install Underthesea Flow, run this command in your terminal:
+To install LanguageFlow, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install underthesea_flow
+    $ pip install languageflow
 
-This is the preferred method to install Underthesea Flow, as it will always install the most recent stable release. 
+This is the preferred method to install LanguageFlow, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for Underthesea Flow can be downloaded from the `Github repo`_.
+The sources for LanguageFlow can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/rain1024/underthesea_flow
+    $ git clone git://github.com/undertheseanlp/languageflow
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/rain1024/underthesea_flow/tarball/master
+    $ curl  -OL https://github.com/undertheseanlp/languageflow/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/rain1024/underthesea_flow
-.. _tarball: https://github.com/rain1024/underthesea_flow/tarball/master
+.. _Github repo: https://github.com/undertheseanlp/languageflow
+.. _tarball: https://github.com/undertheseanlp/languageflow/tarball/master

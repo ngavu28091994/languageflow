@@ -1,4 +1,4 @@
-Welcome to Underthesea Flow's documentation!
+Welcome to LanguageFlow's documentation!
 ======================================
 
 Contents:
