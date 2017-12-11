@@ -284,6 +284,7 @@ texinfo_documents = [
 autodoc_mock_imports = [
     "sklearn",
     "sklearn.preprocessing",
+    "sklearn.model_selection",
     "underthesea",
     "underthesea.util.file_io",
     "pycrfsuite",
