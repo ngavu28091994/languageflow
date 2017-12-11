@@ -1,7 +1,7 @@
-Welcome to LanguageFlow!
+LanguageFlow documentation
 ======================================
 
-Contents:
+Data loaders and abstractions for text and NLP
 
 .. toctree::
    :maxdepth: 1
@@ -10,10 +10,9 @@ Contents:
    readme
    installation
    usage
-    contributing
+   contributing
    authors
    history
-
 
 .. toctree::
    :maxdepth: 1
