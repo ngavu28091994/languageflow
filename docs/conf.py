@@ -44,8 +44,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.linkcode',
     'sphinx.ext.intersphinx',
-    # 'sphinx.ext.napoleon',
-    'sphinx_gallery.gen_gallery',
+    'sphinx.ext.napoleon',
+    # 'sphinx_gallery.gen_gallery',
     'sphinx.ext.viewcode'
 ]
 
