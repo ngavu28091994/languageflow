@@ -12,3 +12,8 @@ SGDClassifier
     :members:
     :undoc-members:
     :inherited-members:
+
+.. autoclass:: languageflow.model.fasttext.FastTextClassifier
+    :members:
+    :undoc-members:
+    :inherited-members:

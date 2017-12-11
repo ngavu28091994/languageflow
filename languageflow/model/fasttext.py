@@ -39,7 +39,7 @@ class FastTextClassifier:
         return label
 
     def predict(self, X):
-        """ Predict
+        """ In order to obtain the most likely label for a list of text
 
         Parameters
         ----------
@@ -48,7 +48,7 @@ class FastTextClassifier:
         Returns
         -------
         C : array or a label
-            Returns predicts values.
+            List label of text.
         """
         x = X
         if not isinstance(X, list):
