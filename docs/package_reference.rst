@@ -11,4 +11,4 @@ SGDClassifier
 ----------------------------
 
 .. autoclass:: languageflow.model.sgd.SGDClassifier
-    :members::
+    :members:
