@@ -13,7 +13,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
-   :cation: Package Reference
+   :caption: Package Reference
 
    package_reference
 
