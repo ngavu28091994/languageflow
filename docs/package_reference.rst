@@ -5,4 +5,10 @@ Package Reference
 ----------------------------
 
 .. automodule:: languageflow.model
-    :members:
+.. currentmodule:: languageflow.model
+
+SGDClassifier
+----------------------------
+
+.. autoclass:: SGDClassifier
+    :members::
