@@ -13,7 +13,7 @@ class FastTextClassifier:
     def fit(self, X, y, model_filename=None):
         """Fit FastText according to X, y
 
-        Parameters:
+        Parameters
         ----------
         X : list of text
             each item is a raw text
