@@ -5,7 +5,6 @@ Package Reference
 ----------------------------
 
 .. automodule:: languageflow.model
-.. currentmodule:: languageflow.model
 
 SGDClassifier
 ----------------------------
