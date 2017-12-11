@@ -9,7 +9,7 @@ Contents:
    readme
    installation
    usage
-   package_reference
+   modules
    contributing
    authors
    history
