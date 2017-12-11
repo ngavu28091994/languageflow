@@ -280,3 +280,8 @@ texinfo_documents = [
 #texinfo_no_detailmenu = False
 
 autodoc_mock_imports = ["sklearn"]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/', None),
+    'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+}
