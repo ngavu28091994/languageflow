@@ -1,3 +1,18 @@
+************************
+languageflow.transformer
+************************
+
+.. automodule:: languageflow.transformer
+
+
+TfidfVectorizer
+===============
+
+.. autoclass:: languageflow.transformer.tfidf.TfidfVectorizer
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 ******************
 languageflow.model
 ******************
