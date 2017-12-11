@@ -5,10 +5,14 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
+   :caption: Notes
 
    readme
    installation
    usage
+    contributing
+   authors
+   history
 
 
 .. toctree::
@@ -17,13 +21,6 @@ Contents:
 
    package_reference
 
-
-.. toctree::
-   :maxdepth: 1
-
-   contributing
-   authors
-   history
 
 
 Indices and tables
