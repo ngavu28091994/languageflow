@@ -43,7 +43,8 @@ class FastTextClassifier:
 
         Parameters
         ----------
-        X: {array-like} or raw text
+        X: {array-like|str}
+            Raw text
 
         Returns
         -------
