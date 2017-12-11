@@ -285,6 +285,7 @@ autodoc_mock_imports = [
     "sklearn",
     "sklearn.preprocessing",
     "sklearn.model_selection",
+    "sklearn.metrics",
     "underthesea",
     "underthesea.util.file_io",
     "pycrfsuite",
