@@ -285,7 +285,8 @@ autodoc_mock_imports = [
     "sklearn",
     "underthesea",
     "underthesea.util.file_io",
-    "pycrfsuite"
+    "pycrfsuite",
+    "abc"
 ]
 
 intersphinx_mapping = {
