@@ -1,22 +1,3 @@
-# ===========================
-# token syntax
-# ===========================
-#         _ row 1
-#        /  _ row 2
-#       /  /  _ column
-#      /  /  /
-#    T[0,2][0]
-#          .is_digit
-#            \_ function
-#
-# ===========================
-# sample tagged sentence
-# ===========================
-# this     A
-# is       B
-# a        C
-# sample   D
-# sentence E
 
 
 import re
