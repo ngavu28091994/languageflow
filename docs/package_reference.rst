@@ -5,16 +5,14 @@ Package Reference
 ----------------------------
 
 .. automodule:: languageflow.model
+.. currentmodule:: languageflow.model
 
-
-ABC
-----------------------------
-
-.. autoclass:: languageflow.model.abc.ABC
-    :members:
 
 SGDClassifier
 ----------------------------
 
 .. autoclass:: languageflow.model.sgd.SGDClassifier
     :members:
+    :undoc-members:
+    :inherited-members:
+    :show-inheritance:
