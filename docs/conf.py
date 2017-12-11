@@ -286,6 +286,7 @@ autodoc_mock_imports = [
     "underthesea",
     "underthesea.util.file_io",
     "pycrfsuite",
+    "joblib",
     "numpy"
 ]
 
