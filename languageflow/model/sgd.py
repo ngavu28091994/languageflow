@@ -11,12 +11,6 @@ class SGDClassifier(linear_model.SGDClassifier):
     def fit(self, *args, **kwargs):
         """ Fit linear model with Stochastic Gradient Descent
 
-        :param X: Training data
-        :type X: {array-like, sparse matrix}, shape (n_samples, n_features)
-        :param kwargs:
-        :return:
-
-
         Parameters
         ----------
         arg1 : int
