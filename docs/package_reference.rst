@@ -20,3 +20,12 @@ FastTextClassifier
     :members:
     :undoc-members:
     :inherited-members:
+
+CRF
+==================
+
+.. autoclass:: languageflow.model.crf.CRF
+    :members:
+    :undoc-members:
+    :inherited-members:
+
