@@ -9,7 +9,7 @@ languageflow.model
 SGDClassifier
 =============
 
-.. autoclass:: languageflow.model.sgd.SGDClassifier
+.. autoclass:: sgd.SGDClassifier
     :members:
     :undoc-members:
     :inherited-members:
