@@ -10,6 +10,9 @@ from languageflow.validation.validation import TrainTestSplitValidation
 
 
 class Flow:
+    """
+    Handle flow to build model
+    """
     def __init__(self):
         self.models = []
         self.lc_range = [1]

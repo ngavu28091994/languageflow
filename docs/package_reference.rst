@@ -1,3 +1,17 @@
+************
+languageflow
+************
+
+.. automodule:: languageflow
+
+Flow
+====
+
+.. autoclass:: languageflow.flow.Flow
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 ************************
 languageflow.transformer
 ************************

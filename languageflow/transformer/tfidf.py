@@ -1,6 +1,7 @@
 from sklearn import feature_extraction
 import numpy as np
 
+
 class TfidfVectorizer(feature_extraction.text.TfidfVectorizer):
     """
     Convert a collection of raw documents to a matrix of TF-IDF features.
@@ -114,6 +115,7 @@ class TfidfVectorizer(feature_extraction.text.TfidfVectorizer):
           - were cut off by feature selection (`max_features`).
         This is only available if no vocabulary was given.
     """
+
     def __init__(self, input='content', encoding='utf-8',
                  decode_error='strict', strip_accents=None, lowercase=True,
                  preprocessor=None, tokenizer=None, analyzer='word',
@@ -122,4 +124,11 @@ class TfidfVectorizer(feature_extraction.text.TfidfVectorizer):
                  max_features=None, vocabulary=None, binary=False,
                  dtype=np.int64, norm='l2', use_idf=True, smooth_idf=True,
                  sublinear_tf=False):
-        super(TfidfVectorizer, self).__init__(input, encoding, decode_error, strip_accents, lowercase, preprocessor, tokenizer, analyzer, stop_words, token_pattern, ngram_range, max_df, min_df, max_features, vocabulary, binary, dtype, norm, use_idf, smooth_idf, sublinear_tf)
+        super(TfidfVectorizer, self).__init__(input, encoding, decode_error,
+                                              strip_accents, lowercase,
+                                              preprocessor, tokenizer, analyzer,
+                                              stop_words, token_pattern,
+                                              ngram_range, max_df, min_df,
+                                              max_features, vocabulary, binary,
+                                              dtype, norm, use_idf, smooth_idf,
+                                              sublinear_tf)
