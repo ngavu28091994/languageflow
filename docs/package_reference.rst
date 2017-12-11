@@ -2,8 +2,6 @@
 languageflow
 ************
 
-.. automodule:: languageflow
-
 Flow
 ====
 
