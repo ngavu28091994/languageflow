@@ -6,7 +6,7 @@ class TfidfVectorizer(feature_extraction.text.TfidfVectorizer):
     """
     Convert a collection of raw documents to a matrix of TF-IDF features.
 
-    Parameters
+    Parameters:
     ----------
     input : string {'filename', 'file', 'content'}
         If 'filename', the sequence passed as an argument to fit is
