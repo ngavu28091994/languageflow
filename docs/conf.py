@@ -293,7 +293,10 @@ autodoc_mock_imports = [
     "http.server",
     "numpy",
     "torch",
-    "torch.nn"
+    "torch.nn",
+    "torch.autograd",
+    "torch.optim",
+    "torch.nn.functional"
 ]
 
 intersphinx_mapping = {
