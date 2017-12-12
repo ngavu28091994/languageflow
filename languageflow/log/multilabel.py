@@ -2,6 +2,7 @@ import sklearn
 from sklearn.preprocessing import MultiLabelBinarizer
 
 
+
 def accuracy_score(TP, FP, TN, FN):
     return round((TP + TN) / (TP + FP + TN + FN), 2)
 
