@@ -73,7 +73,7 @@ MulticlassLogger
 MultilabelLogger
 ================
 
-.. autoclass:: languageflow.log.multiclass.MultilabelLogger
+.. autoclass:: languageflow.log.multilabel.MultilabelLogger
     :members:
     :undoc-members:
     :inherited-members:
