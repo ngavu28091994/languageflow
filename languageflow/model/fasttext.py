@@ -15,9 +15,9 @@ class FastTextClassifier:
 
         Parameters
         ----------
-        X : list of text
+        X : list of string
             each item is a raw text
-        y: list of text
+        y : list of string
             each item is a label
         """
         train_file = "temp.train"
@@ -43,13 +43,13 @@ class FastTextClassifier:
 
         Parameters
         ----------
-        X: {array-like|str}
-            Raw text
+        X : list of string
+            Raw texts
 
         Returns
         -------
-        C : array or a label
-            List label of text.
+        C : list of string
+            List labels
         """
         x = X
         if not isinstance(X, list):

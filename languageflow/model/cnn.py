@@ -95,6 +95,15 @@ class KimCNNClassifier:
         self.lr = lr
 
     def fit(self, X, y):
+        """Fit KimCNNClassifier according to X, y
+
+        Parameters
+        ----------
+        X : list of string
+            each item is a raw text
+        y : list of string
+            each item is a label
+        """
         ####################
         # Data Loader
         ####################
@@ -162,6 +171,18 @@ class KimCNNClassifier:
         self.model = model
 
     def predict(self, X):
+        """
+
+        Parameters
+        ----------
+        X : list of string
+            Raw texts
+
+        Returns
+        -------
+        C : list of string
+            List labels
+        """
         x = self.word_vector_transformer.transform(X)
         x = Variable(LongTensor(x))
         y = self.model(x)
