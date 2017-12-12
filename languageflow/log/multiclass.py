@@ -5,38 +5,11 @@ from sklearn import metrics
 from sklearn.preprocessing import LabelBinarizer
 
 
-def accuracy_score(TP, FP, TN, FN):
-    return round((TP + TN) / (TP + FP + TN + FN), 2)
-
-
-def precision_score(TP, FP, TN, FN):
-    try:
-        return round(TP / (TP + FP), 2)
-    except:
-        return 0
-
-
-def recall_score(TP, FP, TN, FN):
-    try:
-        return round(TP / (TP + FN), 2)
-    except:
-        return 0
-
-
-def f1_score(TP, FP, TN, FN):
-    p = precision_score(TP, FP, TN, FN)
-    r = recall_score(TP, FP, TN, FN)
-    try:
-        f1 = round((2 * p * r) / (p + r), 2)
-    except:
-        f1 = 0
-    return f1
-
-
 class MulticlassLogger:
     """
     Analyze and save multiclass results
     """
+
     @staticmethod
     def log(X_test, y_test, y_pred, folder):
         """
@@ -100,3 +73,31 @@ class MulticlassLogger:
         y_pred = binarizer.transform(y_pred)
         print("F1 Weighted:",
               metrics.f1_score(y_test, y_pred, average='weighted'))
+
+
+def accuracy_score(TP, FP, TN, FN):
+    return round((TP + TN) / (TP + FP + TN + FN), 2)
+
+
+def precision_score(TP, FP, TN, FN):
+    try:
+        return round(TP / (TP + FP), 2)
+    except:
+        return 0
+
+
+def recall_score(TP, FP, TN, FN):
+    try:
+        return round(TP / (TP + FN), 2)
+    except:
+        return 0
+
+
+def f1_score(TP, FP, TN, FN):
+    p = precision_score(TP, FP, TN, FN)
+    r = recall_score(TP, FP, TN, FN)
+    try:
+        f1 = round((2 * p * r) / (p + r), 2)
+    except:
+        f1 = 0
+    return f1

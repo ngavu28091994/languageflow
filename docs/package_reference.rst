@@ -70,6 +70,14 @@ MulticlassLogger
     :undoc-members:
     :inherited-members:
 
+MultilabelLogger
+================
+
+.. autoclass:: languageflow.log.multiclass.MultilabelLogger
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 ******************
 languageflow.board
 ******************
