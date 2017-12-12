@@ -70,6 +70,10 @@ MulticlassLogger
     :undoc-members:
     :inherited-members:
 
+******************
+languageflow.board
+******************
+
 .. automodule:: languageflow.board
 
 board
