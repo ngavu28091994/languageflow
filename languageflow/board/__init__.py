@@ -3,11 +3,11 @@ Visualize log results
 """
 
 import webbrowser
-from http.server import HTTPServer, CGIHTTPRequestHandler
 import os
 
 
 def board(folder):
+    from http.server import HTTPServer, CGIHTTPRequestHandler
     """
 
     Parameters
