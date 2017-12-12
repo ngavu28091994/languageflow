@@ -40,6 +40,14 @@ SGDClassifier
     :undoc-members:
     :inherited-members:
 
+KimCNNClassifier
+==================
+
+.. autoclass:: languageflow.model.cnn.KimCNNClassifier
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 FastTextClassifier
 ==================
 

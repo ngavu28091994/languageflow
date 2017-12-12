@@ -77,6 +77,11 @@ class KimCNNClassifier:
 
         Parameters
         ----------
+        batch_size: int
+        kernel_sizes: list of int
+        num_kernel: int
+        embedding_dim: int
+            only for CNN-rand
         epoch: int
             Number of epochs to train the model
         lr: float, optional
