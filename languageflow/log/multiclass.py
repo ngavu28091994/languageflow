@@ -34,6 +34,9 @@ def f1_score(TP, FP, TN, FN):
 
 
 class MulticlassLogger:
+    """
+    Log and analyze multiclass results
+    """
     @staticmethod
     def log(X_test, y_test, y_pred, folder):
         """

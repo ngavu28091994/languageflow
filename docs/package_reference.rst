@@ -56,3 +56,16 @@ CRF
     :undoc-members:
     :inherited-members:
 
+****************
+languageflow.log
+****************
+
+.. automodule:: languageflow.model
+
+MulticlassLogger
+================
+
+.. autoclass:: languageflow.log.multiclass.MulticlassLogger
+    :members:
+    :undoc-members:
+    :inherited-members:
