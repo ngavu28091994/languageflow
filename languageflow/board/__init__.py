@@ -7,7 +7,6 @@ import os
 
 
 def board(folder):
-    from http.server import HTTPServer, CGIHTTPRequestHandler
     """
 
     Parameters
@@ -16,6 +15,7 @@ def board(folder):
         log folder
     """
 
+    from http.server import HTTPServer, CGIHTTPRequestHandler
     port = 62000
 
     os.chdir(folder)
