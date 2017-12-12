@@ -78,7 +78,7 @@ class Flow:
         model = [model for model in self.models if model.name == model_name][0]
         e = Experiment(self.X, self.y, model.estimator, None)
         model_filename = join(export_folder, "model.bin")
-        e.save_model(model_filename)
+        e.export(model_filename)
 
     def test(self, X, y_true, model):
         y_predict = model.predict(X)

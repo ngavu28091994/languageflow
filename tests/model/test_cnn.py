@@ -39,5 +39,3 @@ class TestCNN(TestCase):
         print("Test results")
         for i, x in enumerate(X_test):
             print("{} -> {}".format(x, y_pred[i]))
-
-        print(estimator.predict(X))
