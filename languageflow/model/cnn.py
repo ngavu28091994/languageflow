@@ -68,26 +68,24 @@ class CategorizedDataset(Dataset):
 
 class KimCNNClassifier:
     """ An implementation of the model from Kim2014 paper
+
+    Parameters
+    ----------
+    batch_size: int
+        Number of samples per gradient update
+    kernel_sizes: list of int
+    num_kernel: int
+    embedding_dim: int
+        only for CNN-rand
+    epoch: int
+        Number of epochs to train the model
+    lr: float, optional
+        Learning rate (default: 1e-3)
     """
 
     def __init__(self, batch_size=50, kernel_sizes=[3, 4, 5], num_kernel=100,
                  embedding_dim=50,
                  epoch=50, lr=0.001):
-        """
-
-        Parameters
-        ----------
-        batch_size: int
-            Number of samples per gradient update
-        kernel_sizes: list of int
-        num_kernel: int
-        embedding_dim: int
-            only for CNN-rand
-        epoch: int
-            Number of epochs to train the model
-        lr: float, optional
-            Learning rate (default: 1e-3)
-        """
         self.batch_size = batch_size
         self.kernel_sizes = kernel_sizes
         self.num_kernel = num_kernel
