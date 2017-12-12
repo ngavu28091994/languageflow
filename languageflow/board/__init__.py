@@ -1,5 +1,5 @@
 """
-Visualize analyzed result
+Visualize log results
 """
 
 import webbrowser
@@ -18,8 +18,7 @@ def board(folder):
 
     port = 62000
 
-    web_dir = folder
-    os.chdir(web_dir)
+    os.chdir(folder)
     httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
     print("Starting LanguageBoard on port: " + str(httpd.server_port))
     webbrowser.open('http://localhost:{}'.format(port))
