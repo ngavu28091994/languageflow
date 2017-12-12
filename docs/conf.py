@@ -291,7 +291,8 @@ autodoc_mock_imports = [
     "pycrfsuite",
     "joblib",
     "http.server",
-    "numpy"
+    "numpy",
+    "torch"
 ]
 
 intersphinx_mapping = {

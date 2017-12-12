@@ -78,6 +78,7 @@ class KimCNNClassifier:
         Parameters
         ----------
         batch_size: int
+            Number of samples per gradient update
         kernel_sizes: list of int
         num_kernel: int
         embedding_dim: int
