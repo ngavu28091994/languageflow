@@ -292,7 +292,8 @@ autodoc_mock_imports = [
     "joblib",
     "http.server",
     "numpy",
-    "torch"
+    "torch",
+    "torch.nn"
 ]
 
 intersphinx_mapping = {
