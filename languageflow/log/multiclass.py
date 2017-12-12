@@ -43,9 +43,12 @@ class MulticlassLogger:
 
         Parameters
         ----------
-        X_test : list of text
-        y_test : list of label
-        y_pred : list of label
+        X_test : list of string
+            Raw texts
+        y_test : list of string
+            Test labels
+        y_pred : list of string
+            Predict labels
         folder : string
             log folder
         """
