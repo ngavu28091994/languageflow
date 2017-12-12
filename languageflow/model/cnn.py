@@ -81,6 +81,15 @@ class KimCNNClassifier:
         Number of epochs to train the model
     lr: float, optional
         Learning rate (default: 1e-3)
+
+    Examples
+    --------
+    >>> from languageflow.flow import Flow
+    >>> flow = Flow()
+    >>> flow.data(X, y)
+    >>> model = Model(KimCNNClassifier(batch_size=5, epoch=150, embedding_dim=300)
+    >>> flow.add_model(model, "KimCNNClassifier"))
+    >>> flow.train()
     """
 
     def __init__(self, batch_size=50, kernel_sizes=[3, 4, 5], num_kernel=100,
