@@ -1,5 +1,5 @@
 """
-Visualize log results
+Visualize analyzed results
 """
 
 import webbrowser
