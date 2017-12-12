@@ -296,7 +296,8 @@ autodoc_mock_imports = [
     "torch.nn",
     "torch.autograd",
     "torch.optim",
-    "torch.nn.functional"
+    "torch.nn.functional",
+    "torch.utils.data"
 ]
 
 intersphinx_mapping = {
