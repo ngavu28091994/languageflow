@@ -40,7 +40,7 @@ def get_type(folder):
 
 
 def board(folder):
-    """
+    """ Auto detect type from log data and start LanguageBoard
 
     Parameters
     ----------
