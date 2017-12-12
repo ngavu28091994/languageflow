@@ -60,7 +60,7 @@ CRF
 languageflow.log
 ****************
 
-.. automodule:: languageflow.model
+.. automodule:: languageflow.log
 
 MulticlassLogger
 ================
