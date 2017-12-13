@@ -16,6 +16,13 @@ languageflow.transformer
 
 .. automodule:: languageflow.transformer
 
+CountVectorizer
+===============
+
+.. autoclass:: languageflow.transformer.count.CountVectorizer
+    :members:
+    :undoc-members:
+    :inherited-members:
 
 TfidfVectorizer
 ===============
@@ -24,6 +31,7 @@ TfidfVectorizer
     :members:
     :undoc-members:
     :inherited-members:
+
 
 ******************
 languageflow.model
