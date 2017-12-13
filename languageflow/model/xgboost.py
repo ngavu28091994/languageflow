@@ -97,15 +97,10 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
         Parameters
         ----------
         X : {array-like, sparse matrix}
-            Training data.
+            Training data. Shape (n_samples, n_features)
 
         y : numpy array
-            Target values.
-
-        Shape
-        -----
-        X: (n_samples, n_features)
-        y: (n_samples,)
+            Target values. Shape (n_samples,)
 
         Returns
         -------
