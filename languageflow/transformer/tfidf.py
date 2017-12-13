@@ -101,7 +101,7 @@ class TfidfVectorizer(feature_extraction.text.TfidfVectorizer):
     sublinear_tf : boolean, default=False
         Apply sublinear tf scaling, i.e. replace tf with 1 + log(tf).
 
-    Attributes
+    Attributes:
     ----------
     vocabulary_ : dict
         A mapping of terms to feature indices.
