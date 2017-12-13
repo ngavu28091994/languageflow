@@ -104,12 +104,13 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
 
         Shape
         -----
-        - X: (n_samples, n_features)
-        - y: (n_samples,)
+        X: (n_samples, n_features)
+        y: (n_samples,)
 
         Returns
         -------
-        self : returns an instance of self.
+        self : C
+            returns an instance of self.
         """
         self.booster_ = None
         X = self._convert(X, y)
