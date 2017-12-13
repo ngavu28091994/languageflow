@@ -19,7 +19,7 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
             mean more conservative boosting
     max_depth : maximum depth of a tree
     min_child_weight : larger values mean more conservative partitioning
-    objective : 'reg:linear' - linear regression \
+    objective : 'reg:linear' - linear regression \n
                 'reg:logistic' - logistic regression \
                 'binary:logistic' - binary logistic regression
                 'binary:logitraw' - binary logistic regression before logistic transformation
