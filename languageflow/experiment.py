@@ -32,7 +32,7 @@ class Experiment:
         self.validation = validation
         self.log_folder = "."
 
-    def run(self, transformers):
+    def train(self):
         start = time.time()
 
         try:

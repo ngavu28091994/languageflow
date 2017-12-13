@@ -4,6 +4,7 @@ from os.path import join
 from sklearn.preprocessing import MultiLabelBinarizer
 
 from languageflow.experiment import Experiment
+from languageflow.transformer.count import CountVectorizer
 from languageflow.transformer.tfidf import TfidfVectorizer
 
 from languageflow.validation.validation import TrainTestSplitValidation
@@ -36,6 +37,8 @@ class Flow:
             self.X, self.y = transformer.transform(self.sentences)
         if isinstance(transformer, TfidfVectorizer):
             self.X = transformer.fit_transform(self.X)
+        if isinstance(transformer, CountVectorizer):
+            self.X = transformer.fit_transform(self.X)
         if isinstance(transformer, MultiLabelBinarizer):
             self.y = transformer.fit_transform(self.y)
 
@@ -60,10 +63,7 @@ class Flow:
                 e = Experiment(X, y, model.estimator, self.scores,
                                self.validation_method)
                 e.log_folder = self.log_folder
-                e.run(self.transformers)
-
-    def visualize(self):
-        pass
+                e.train()
 
     def export(self, model_name, export_folder):
         for transformer in self.transformers:
@@ -75,11 +75,11 @@ class Flow:
                 joblib.dump(transformer,
                             join(export_folder, "tfidf.transformer.bin"),
                             protocol=2)
+            if isinstance(transformer, CountVectorizer):
+                joblib.dump(transformer,
+                            join(export_folder, "count.transformer.bin"),
+                            protocol=2)
         model = [model for model in self.models if model.name == model_name][0]
         e = Experiment(self.X, self.y, model.estimator, None)
         model_filename = join(export_folder, "model.bin")
         e.export(model_filename)
-
-    def test(self, X, y_true, model):
-        y_predict = model.predict(X)
-        y_true = [item[0] for item in y_true]
