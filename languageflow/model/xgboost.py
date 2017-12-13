@@ -25,7 +25,6 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
     min_child_weight : int
         larger values mean more conservative partitioning
     objective : string
-    test
         Specify the learning task and the corresponding learning objective or a custom objective function to be used
             - 'reg:linear' : linear regression
             - 'reg:logistic' : logistic regression
