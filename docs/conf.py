@@ -285,6 +285,7 @@ autodoc_mock_imports = [
     "sklearn.preprocessing",
     "sklearn.model_selection",
     "sklearn.metrics",
+    "sklearn.base",
     "sklearn.multiclass",
     "underthesea",
     "underthesea.util.file_io",
@@ -297,7 +298,8 @@ autodoc_mock_imports = [
     "torch.autograd",
     "torch.optim",
     "torch.nn.functional",
-    "torch.utils.data"
+    "torch.utils.data",
+    "xgboost"
 ]
 
 intersphinx_mapping = {

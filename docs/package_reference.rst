@@ -48,6 +48,14 @@ SGDClassifier
     :undoc-members:
     :inherited-members:
 
+XGBoostClassifier
+=================
+
+.. autoclass:: languageflow.model.xgboost.XGBoostClassifier
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 KimCNNClassifier
 ==================
 
