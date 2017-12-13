@@ -18,19 +18,22 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
         Can be 'gbtree' or 'gblinear'
             - 'gbtree' : classification
             - 'gblinear' : regression
-    gamma : minimum loss reduction required to make a partition, higher values
+    gamma : float
+        minimum loss reduction required to make a partition, higher values
             mean more conservative boosting
-    max_depth : maximum depth of a tree
-    min_child_weight : larger values mean more conservative partitioning
+    max_depth : int
+        maximum depth of a tree
+    min_child_weight : int
+        larger values mean more conservative partitioning
     objective : string
         Specify the learning task and the corresponding learning objective or a custom objective function to be used
-            - 'reg:linear' : linear regression
-            - 'reg:logistic' : logistic regression
-            - 'binary:logistic' : binary logistic regression
-            - 'binary:logitraw' - binary logistic regression before logistic transformation
-            - 'multi:softmax' : multiclass classification
-            - 'multi:softprob' : multiclass classification with class probability output
-            - 'rank:pairwise' : pairwise minimize loss
+        - 'reg:linear' : linear regression
+        - 'reg:logistic' : logistic regression
+        - 'binary:logistic' : binary logistic regression
+        - 'binary:logitraw' - binary logistic regression before logistic transformation
+        - 'multi:softmax' : multiclass classification
+        - 'multi:softprob' : multiclass classification with class probability output
+        - 'rank:pairwise' : pairwise minimize loss
     metric : string
          Evaluation metrics:
             - 'rmse' - root mean square error
