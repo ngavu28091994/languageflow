@@ -8,32 +8,32 @@ import numpy as np
 
 class XGBoostClassifier(BaseEstimator, ClassifierMixin):
     """
-        A simple wrapper around XGBoost
-        more details:
-        https://github.com/dmlc/xgboost/wiki/Parameters
+    A simple wrapper around XGBoost
+    more details:
+    https://github.com/dmlc/xgboost/wiki/Parameters
 
-        Parameters
-        ----------
-        base_estimator : can be 'gbtree' or 'gblinear'
-        gamma : minimum loss reduction required to make a partition, higher values
-                mean more conservative boosting
-        max_depth : maximum depth of a tree
-        min_child_weight : larger values mean more conservative partitioning
-        objective : 'reg:linear' - linear regression
-                    'reg:logistic' - logistic regression
-                    'binary:logistic' - binary logistic regression
-                    'binary:logitraw' - binary logistic regression before logistic transformation
-                    'multi:softmax' - multiclass classification
-                    'multi:softprob' - multiclass classification with class probability output
-                    'rank:pairwise' - pairwise minimize loss
-        metric : 'rmse' - root mean square error
-                 'logloss' - negative log likelihood
-                 'error' - binary classification error rate
-                 'merror' - multiclass error rate
-                 'mlogloss' - multiclass logloss
-                 'auc' - area under the curve for ranking evaluation
-                 'ndcg' - normalized discounted cumulative gain ndcg@n for top n eval
-                 'map' - mean average precision map@n for top n eval
+    Parameters
+    ----------
+    base_estimator : can be 'gbtree' or 'gblinear'
+    gamma : minimum loss reduction required to make a partition, \ higher values
+            mean more conservative boosting
+    max_depth : maximum depth of a tree
+    min_child_weight : larger values mean more conservative partitioning
+    objective : 'reg:linear' - linear regression \
+                'reg:logistic' - logistic regression \
+                'binary:logistic' - binary logistic regression
+                'binary:logitraw' - binary logistic regression before logistic transformation
+                'multi:softmax' - multiclass classification
+                'multi:softprob' - multiclass classification with class probability output
+                'rank:pairwise' - pairwise minimize loss
+    metric : 'rmse' - root mean square error
+             'logloss' - negative log likelihood
+             'error' - binary classification error rate
+             'merror' - multiclass error rate
+             'mlogloss' - multiclass logloss
+             'auc' - area under the curve for ranking evaluation
+             'ndcg' - normalized discounted cumulative gain ndcg@n for top n eval
+             'map' - mean average precision map@n for top n eval
     """
 
     def __init__(self,
