@@ -92,8 +92,27 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
         self.n_iter = n_iter
 
     def fit(self, X, y=None):
+        """
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix}
+            Training data.
+
+        y : numpy array
+            Target values.
+
+        Shape
+        -----
+        - X: (n_samples, n_features)
+        - y: (n_samples,)
+
+        Returns
+        -------
+        self : returns an instance of self.
+        """
         self.booster_ = None
-        X = self.convert(X, y)
+        X = self._convert(X, y)
         if self.wl:
             wl = [(X, 'train')]
             for i, ent in enumerate(self.wl):
@@ -113,7 +132,7 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
         X = xgb.DMatrix(X)
         return self.booster_.predict(X)
 
-    def convert(self, X, y=None):
+    def _convert(self, X, y=None):
         if y is None:
             if isinstance(X, xgb.DMatrix):
                 return X
@@ -128,7 +147,7 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
             return xgb.DMatrix(X, y, missing=np.nan)
 
     def predict(self, X):
-        X = self.convert(X)
+        X = self._convert(X)
         probs = self.booster_.predict(X)
         return list(np.argmax(probs, axis=1))
 
