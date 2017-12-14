@@ -38,6 +38,7 @@ class Flow:
     def data(self, X=None, y=None, sentences=None):
         """
         Add data to flow
+
         """
         self.X = X
         self.y = y
@@ -45,7 +46,12 @@ class Flow:
 
     def transform(self, transformer):
         """
-        Apply transform to data in flow
+        Add transformer to flow and apply transformer to data in flow
+
+        Parameters
+        ----------
+        transformer : Transformer
+            a transformer to transform data
         """
         self.transformers.append(transformer)
         from languageflow.transformer.tagged import TaggedTransformer
