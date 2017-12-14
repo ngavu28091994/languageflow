@@ -8,7 +8,7 @@ from languageflow.transformer.count import CountVectorizer
 from languageflow.transformer.tfidf import TfidfVectorizer
 
 from languageflow.validation.validation import TrainTestSplitValidation
-
+from languageflow.transformer.number import NumberRemover
 
 class Flow:
     """
@@ -39,6 +39,9 @@ class Flow:
             self.X = transformer.fit_transform(self.X)
         if isinstance(transformer, CountVectorizer):
             self.X = transformer.fit_transform(self.X)
+        if isinstance(transformer, NumberRemover):
+            self.X = transformer.transform(self.X)
+
         if isinstance(transformer, MultiLabelBinarizer):
             self.y = transformer.fit_transform(self.y)
 
@@ -78,6 +81,10 @@ class Flow:
             if isinstance(transformer, CountVectorizer):
                 joblib.dump(transformer,
                             join(export_folder, "count.transformer.bin"),
+                            protocol=2)
+            if isinstance(transformer, NumberRemover):
+                joblib.dump(transformer,
+                            join(export_folder, "number.transformer.bin"),
                             protocol=2)
         model = [model for model in self.models if model.name == model_name][0]
         e = Experiment(self.X, self.y, model.estimator, None)
