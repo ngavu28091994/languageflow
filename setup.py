@@ -25,7 +25,7 @@ test_requirements = [
 
 setup(
     name='languageflow',
-    version='1.1.6-alpha-4',
+    version='1.1.6-alpha-5',
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",

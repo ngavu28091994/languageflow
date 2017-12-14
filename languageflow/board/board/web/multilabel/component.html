@@ -33,13 +33,15 @@
                         {{ t.content }}
                         <br/>
                         Expected: <span class="label label-success"
-                                        style="margin-right:2px;">
-            {{ t['expected'] }}
+                                        style="margin-right:2px;"
+                                        ng-repeat="item in t['expected'] track by $index">
+            {{ item }}
           </span>
                         <br/>
                         Actual: <span class="label label-warning"
-                                      style="margin-right:2px;">
-            {{ t['actual'] }}
+                                      style="margin-right:2px;"
+                                      ng-repeat="item in t['actual'] track by $index">
+            {{ item }}
           </span>
                     </li>
                 </ul>

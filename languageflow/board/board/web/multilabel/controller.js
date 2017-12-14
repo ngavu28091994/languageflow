@@ -35,7 +35,7 @@ window.app.controller('MultiLabelController', function ($scope, $http) {
             return expectedClass == $scope.filterExpectedClass && actualClass == $scope.filterActualClass;
         });
     };
-    $http.get("result.json")
+    $http.get("multilabel.json")
         .then(function (result) {
             var data = result["data"];
             var text = [];

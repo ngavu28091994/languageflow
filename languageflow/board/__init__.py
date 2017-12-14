@@ -1,43 +1,29 @@
 """
 Visualize analyzed results
 """
-import json
 import webbrowser
 import os
 import shutil
 from os.path import dirname, join
 
 
-def init_board(type, folder):
-    """
-
-    Parameters
-    ----------
-    type: string
-        either 'multiclass', 'multilabel'
-    folder: string
-        log folder
-    """
-    source_folder = join(dirname(__file__), type)
-    shutil.copy(join(source_folder, "index.html"), join(folder, "index.html"))
-
-
-def get_type(folder):
+def init_board(folder):
     """
 
     Parameters
     ----------
     folder: string
         log folder
-
-    Returns
-    -------
-    type: string
-        type of problem
     """
-    type = json.loads(open(join(folder, "result.json")).read())["type"]
-    return type
-
+    web_folder = join(folder, "web")
+    try:
+        shutil.rmtree(web_folder)
+    except:
+        pass
+    source_web_folder = join(dirname(__file__), "board", "web")
+    shutil.copytree(source_web_folder, web_folder)
+    index_file = join(dirname(__file__), "board", "index.html")
+    shutil.copy(index_file, join(folder, "index.html"))
 
 def board(folder):
     """ Auto detect type from log data and start LanguageBoard
@@ -50,8 +36,7 @@ def board(folder):
 
     from http.server import HTTPServer, CGIHTTPRequestHandler
     port = 62000
-    type = get_type(folder)
-    init_board(type, folder)
+    init_board(folder)
     os.chdir(folder)
 
     httpd = HTTPServer(('', port), CGIHTTPRequestHandler)

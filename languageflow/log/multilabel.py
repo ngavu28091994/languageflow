@@ -25,6 +25,7 @@ class MultilabelLogger:
         folder : string
             log folder
         """
+
         labels = set(sum(y_test + y_pred, ()))
         score = {}
         for label in labels:
@@ -47,10 +48,10 @@ class MultilabelLogger:
                 "FP": FP,
                 "TN": TN,
                 "FN": FN,
-                "accuracy": accuracy_score(TP, FP, TN, FN),
-                "precision": precision_score(TP, FP, TN, FN),
-                "recall": recall_score(TP, FP, TN, FN),
-                "f1": f1_score(TP, FP, TN, FN),
+                "accuracy": _accuracy_score(TP, FP, TN, FN),
+                "precision": _precision_score(TP, FP, TN, FN),
+                "recall": _recall_score(TP, FP, TN, FN),
+                "f1": _f1_score(TP, FP, TN, FN),
             }
         result = {
             "X_test": X_test,
@@ -60,9 +61,9 @@ class MultilabelLogger:
             "type": "multilabel"
         }
         content = json.dumps(result, ensure_ascii=False)
-        log_file = join(folder, "result.json")
+        log_file = join(folder, "multilabel.json")
         write(log_file, content)
-        print("Result is written in {}".format(log_file))
+        print("Multilabel analyze report is saved in analyze folder")
 
         binarizer = MultiLabelBinarizer()
         y = [{i for sub in y_test for i in sub}.union(
@@ -70,31 +71,44 @@ class MultilabelLogger:
         binarizer.fit_transform(y)
         y_test = binarizer.transform(y_test)
         y_pred = binarizer.transform(y_pred)
-        print("F1 Weighted: ",
-              sklearn.metrics.f1_score(y_test, y_pred, average='weighted'))
+
+        from sklearn.metrics import accuracy_score, f1_score
+        result = {
+            "Sample": len(X_test),
+            "Accuracy": accuracy_score(y_test, y_pred),
+            "F1 Micro": f1_score(y_test, y_pred, average='micro'),
+            "F1 Macro": f1_score(y_test, y_pred, average='macro'),
+            "F1 Weighted": f1_score(y_test, y_pred, average='weighted'),
+        }
+        content = json.dumps(result, ensure_ascii=False)
+        log_file = join(folder, "result.json")
+        write(log_file, content)
+        print("Result is saved in analyze folder")
+        print("Classification Report")
+        print(json.dumps(result, indent=4, sort_keys=True))
 
 
-def accuracy_score(TP, FP, TN, FN):
+def _accuracy_score(TP, FP, TN, FN):
     return round((TP + TN) / (TP + FP + TN + FN), 2)
 
 
-def precision_score(TP, FP, TN, FN):
+def _precision_score(TP, FP, TN, FN):
     try:
         return round(TP / (TP + FP), 2)
     except:
         return 0
 
 
-def recall_score(TP, FP, TN, FN):
+def _recall_score(TP, FP, TN, FN):
     try:
         return round(TP / (TP + FN), 2)
     except:
         return 0
 
 
-def f1_score(TP, FP, TN, FN):
-    p = precision_score(TP, FP, TN, FN)
-    r = recall_score(TP, FP, TN, FN)
+def _f1_score(TP, FP, TN, FN):
+    p = _precision_score(TP, FP, TN, FN)
+    r = _recall_score(TP, FP, TN, FN)
     try:
         f1 = round((2 * p * r) / (p + r), 2)
     except:
