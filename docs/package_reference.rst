@@ -16,6 +16,14 @@ languageflow.transformer
 
 .. automodule:: languageflow.transformer
 
+NumberRemover
+=============
+
+.. autoclass:: languageflow.transformer.number.NumberRemover
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 CountVectorizer
 ===============
 
