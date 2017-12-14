@@ -12,7 +12,18 @@ from languageflow.transformer.number import NumberRemover
 
 class Flow:
     """
-    Handle flow to build model
+    Pipeline to build a model
+
+    Examples
+    --------
+
+    >>> from languageflow.flow import Flow
+    >>> flow = Flow()
+    >>> flow.data(X, y)
+    >>> flow.transform(TfidfTransformer())
+    >>> model = Model(SGD(), "SGD")
+    >>> flow.add_model(model)
+    >>> flow.train()
     """
     def __init__(self):
         self.models = []
@@ -25,11 +36,17 @@ class Flow:
         self.transformers = []
 
     def data(self, X=None, y=None, sentences=None):
+        """
+        Add data to flow
+        """
         self.X = X
         self.y = y
         self.sentences = sentences
 
     def transform(self, transformer):
+        """
+        Apply transform to data in flow
+        """
         self.transformers.append(transformer)
         from languageflow.transformer.tagged import TaggedTransformer
 
@@ -46,6 +63,9 @@ class Flow:
             self.y = transformer.fit_transform(self.y)
 
     def add_model(self, model):
+        """
+        Add model to flow
+        """
         self.models.append(model)
 
     def add_score(self, score):
@@ -58,6 +78,9 @@ class Flow:
         self.validation_method = validation
 
     def train(self):
+        """
+        Train model with transformed data
+        """
         for i, model in enumerate(self.models):
             N = [int(i * len(self.y)) for i in self.lc_range]
             for n in N:
@@ -69,6 +92,16 @@ class Flow:
                 e.train()
 
     def export(self, model_name, export_folder):
+        """
+        Export model and transformers to export_folder
+
+        Parameters
+        ----------
+        model_name: string
+            name of model to export
+        export_folder: string
+            folder to store exported model and transformers
+        """
         for transformer in self.transformers:
             if isinstance(transformer, MultiLabelBinarizer):
                 joblib.dump(transformer,
