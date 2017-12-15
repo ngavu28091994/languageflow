@@ -10,7 +10,8 @@ class TfidfLogger:
     """
 
     @staticmethod
-    def log(model_folder, binary_file="tfidf.transformer.bin", log_folder="analyze"):
+    def log(model_folder, binary_file="tfidf.transformer.bin",
+            log_folder="analyze"):
         """
         Parameters
         ----------
@@ -23,5 +24,17 @@ class TfidfLogger:
         """
         file = join(model_folder, binary_file)
         tfidf = joblib.load(file)
-        content = json.dumps(list(tfidf.vocabulary_.keys()), ensure_ascii=False)
+        output = []
+
+        for token in tfidf.vocabulary_:
+            index = tfidf.vocabulary_[token]
+            value = tfidf.idf_[index]
+            ngram = len(token.split(" "))
+            output.append({
+                "token": token,
+                "ngram": ngram,
+                "idf": value
+            })
+        output = sorted(output, key=lambda item: item["idf"])
+        content = json.dumps(output, ensure_ascii=False)
         write(join(log_folder, "tfidf.json"), content)
