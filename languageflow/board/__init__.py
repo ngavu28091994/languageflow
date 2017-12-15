@@ -1,45 +1,48 @@
-"""
-Visualize analyzed results
-"""
 import webbrowser
 import os
 import shutil
 from os.path import dirname, join
 
 
-def init_board(folder):
+class Board:
     """
-
-    Parameters
-    ----------
-    folder: string
-        log folder
+    Visualize analyzed results
     """
-    web_folder = join(folder, "web")
-    try:
-        shutil.rmtree(web_folder)
-    except:
-        pass
-    source_web_folder = join(dirname(__file__), "board", "web")
-    shutil.copytree(source_web_folder, web_folder)
-    index_file = join(dirname(__file__), "board", "index.html")
-    shutil.copy(index_file, join(folder, "index.html"))
+    def __init__(self, log_folder):
+        self.log_folder = log_folder
+        """
 
-def board(folder):
-    """ Auto detect type from log data and start LanguageBoard
+        Parameters
+        ----------
+        log_folder: string
+            path to log folder
+        """
 
-    Parameters
-    ----------
-    folder: string
-        log folder
-    """
+        # Empty log folder
+        try:
+            shutil.rmtree(log_folder)
+        except:
+            pass
+        finally:
+            os.mkdir(log_folder)
 
-    from http.server import HTTPServer, CGIHTTPRequestHandler
-    port = 62000
-    init_board(folder)
-    os.chdir(folder)
+        # Copy web source
+        source_web_folder = join(dirname(__file__), "board", "web")
+        web_folder = join(log_folder, "web")
+        shutil.copytree(source_web_folder, web_folder)
+        index_file = join(dirname(__file__), "board", "index.html")
+        shutil.copy(index_file, join(log_folder, "index.html"))
 
-    httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
-    print("Starting LanguageBoard on port: " + str(httpd.server_port))
-    webbrowser.open('http://localhost:{}'.format(port))
-    httpd.serve_forever()
+    def serve(self):
+        """ Start LanguageBoard web application
+        """
+
+        from http.server import HTTPServer, CGIHTTPRequestHandler
+        port = 62000
+        os.chdir(self.log_folder)
+
+        httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
+        print("Starting LanguageBoard on port: " + str(httpd.server_port))
+        webbrowser.open('http://0.0.0.0:{}'.format(port))
+        httpd.serve_forever()
+

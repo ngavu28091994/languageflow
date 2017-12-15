@@ -7,11 +7,12 @@ from underthesea.util.file_io import write
 
 class MultilabelLogger:
     """
-    Analyze and save multilabel results
+    Analyze and save multilabel results to
+    multilabel.json and result.json files
     """
 
     @staticmethod
-    def log(X_test, y_test, y_pred, folder):
+    def log(X_test, y_test, y_pred, log_folder):
         """
 
         Parameters
@@ -22,8 +23,8 @@ class MultilabelLogger:
             Test labels
         y_pred : list of string
             Predict labels
-        folder : string
-            log folder
+        log_folder : string
+            path to log folder
         """
 
         labels = set(sum(y_test + y_pred, ()))
@@ -61,9 +62,9 @@ class MultilabelLogger:
             "type": "multilabel"
         }
         content = json.dumps(result, ensure_ascii=False)
-        log_file = join(folder, "multilabel.json")
+        log_file = join(log_folder, "multilabel.json")
         write(log_file, content)
-        print("Multilabel analyze report is saved in analyze folder")
+        print("Multilabel analyze report is saved in log folder")
 
         binarizer = MultiLabelBinarizer()
         y = [{i for sub in y_test for i in sub}.union(
@@ -81,9 +82,9 @@ class MultilabelLogger:
             "F1 Weighted": f1_score(y_test, y_pred, average='weighted'),
         }
         content = json.dumps(result, ensure_ascii=False)
-        log_file = join(folder, "result.json")
+        log_file = join(log_folder, "result.json")
         write(log_file, content)
-        print("Result is saved in analyze folder")
+        print("Result is saved in log folder")
         print("Classification Report")
         print(json.dumps(result, indent=4, sort_keys=True))
 

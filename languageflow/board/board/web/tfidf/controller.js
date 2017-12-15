@@ -1,4 +1,4 @@
-window.app.controller('ResultController', function ($scope, $http) {
+window.app.controller('TfidfController', function ($scope, $http) {
 
     $scope.isFocusItem = function (row, index) {
         return $scope.filterIndex == index && $scope.filterLabel == row["label"];
@@ -11,17 +11,11 @@ window.app.controller('ResultController', function ($scope, $http) {
         });
     };
 
-    $http.get("result.json")
+    $http.get("tfidf.json")
         .then(function (result) {
 
             var data = result["data"];
-            data = _.map(data, function (value, key) {
-                return {"key": key, "value": value}
-            });
-            data = _.sortBy(data, function (item) {
-                var keys = ["Sample", "Accuracy", "F1 Micro", "F1 Macro", "F1 Weighted"];
-                return keys.indexOf(item["key"]);
-            });
+            data = data.slice(0, 100);
             $scope.data = data;
         });
 });
