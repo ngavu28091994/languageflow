@@ -17,7 +17,7 @@ class Board:
     >>> board = Board(log_folder)
     >>> MultilabelLogger.log(X_test, y_test, y_pred, log_folder=log_folder)
     >>> TfidfLogger.log(model_folder=model_folder, log_folder=log_folder)
-    >>> board.serve()
+    >>> board.serve(port=62000)
     """
     def __init__(self, log_folder):
         self.log_folder = log_folder
@@ -44,12 +44,16 @@ class Board:
         index_file = join(dirname(__file__), "board", "index.html")
         shutil.copy(index_file, join(log_folder, "index.html"))
 
-    def serve(self):
+    def serve(self, port=62000):
         """ Start LanguageBoard web application
+
+        Parameters
+        ----------
+        port: int
+            port to serve Board application
         """
 
         from http.server import HTTPServer, CGIHTTPRequestHandler
-        port = 62000
         os.chdir(self.log_folder)
 
         httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
