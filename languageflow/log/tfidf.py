@@ -23,17 +23,18 @@ class TfidfLogger:
             log folder
         """
         file = join(model_folder, binary_file)
-        tfidf = joblib.load(file)
+        vectorizer = joblib.load(file)
         output = []
 
-        for token in tfidf.vocabulary_:
-            index = tfidf.vocabulary_[token]
-            value = tfidf.idf_[index]
+        for token in vectorizer.vocabulary_:
+            index = vectorizer.vocabulary_[token]
             ngram = len(token.split(" "))
             output.append({
                 "token": token,
                 "ngram": ngram,
-                "idf": value
+                "idf": vectorizer.idf_[index],
+                "period": vectorizer.period_[index].item(),
+                "df": vectorizer.df_[index],
             })
         output = sorted(output, key=lambda item: item["idf"])
         content = json.dumps(output, ensure_ascii=False)

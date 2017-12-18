@@ -128,9 +128,40 @@ class CountVectorizer(feature_extraction.text.CountVectorizer):
                  max_df=1.0, min_df=1, max_features=None,
                  vocabulary=None, binary=False, dtype=np.int64):
         super(CountVectorizer, self).__init__(input=input, encoding=encoding,
-                 decode_error=decode_error, strip_accents=strip_accents,
-                 lowercase=lowercase, preprocessor=preprocessor, tokenizer=tokenizer,
-                 stop_words=stop_words, token_pattern=token_pattern,
-                 ngram_range=ngram_range, analyzer=analyzer,
-                 max_df=max_df, min_df=min_df, max_features=max_features,
-                 vocabulary=vocabulary, binary=binary, dtype=dtype)
+                                              decode_error=decode_error,
+                                              strip_accents=strip_accents,
+                                              lowercase=lowercase,
+                                              preprocessor=preprocessor,
+                                              tokenizer=tokenizer,
+                                              stop_words=stop_words,
+                                              token_pattern=token_pattern,
+                                              ngram_range=ngram_range,
+                                              analyzer=analyzer,
+                                              max_df=max_df, min_df=min_df,
+                                              max_features=max_features,
+                                              vocabulary=vocabulary,
+                                              binary=binary, dtype=dtype)
+
+    def fit_transform(self, raw_documents, y=None):
+        """Learn the vocabulary dictionary and return term-document matrix.
+        This is equivalent to fit followed by transform, but more efficiently
+        implemented.
+
+        Parameters
+        ----------
+        raw_documents : iterable
+            An iterable which yields either str, unicode or file objects.
+
+        Returns
+        -------
+        X : array, [n_samples, n_features]
+            Document-term matrix.
+        """
+        documents = super(CountVectorizer, self).fit_transform(
+            raw_documents=raw_documents, y=y)
+        self.n = len(raw_documents)
+        m = (self.transform(raw_documents) > 0).astype(int)
+        m = m.sum(axis=0).A1
+        self.period_ = m
+        self.df_ = m / self.n
+        return documents
