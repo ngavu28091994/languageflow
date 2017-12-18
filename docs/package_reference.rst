@@ -16,28 +16,10 @@ languageflow.transformer
 
 .. automodule:: languageflow.transformer
 
-CountVectorizer
-===============
-
-.. autoclass:: languageflow.transformer.count.CountVectorizer
-    :members:
-    :undoc-members:
-    :inherited-members:
-
 NumberRemover
 =============
 
 .. autoclass:: languageflow.transformer.number.NumberRemover
-    :members:
-    :undoc-members:
-    :inherited-members:
-
-
-
-TfidfVectorizer
-===============
-
-.. autoclass:: languageflow.transformer.tfidf.TfidfVectorizer
     :members:
     :undoc-members:
     :inherited-members:
