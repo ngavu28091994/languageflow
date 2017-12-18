@@ -50,7 +50,7 @@ class Board:
         Parameters
         ----------
         port: int
-            port to serve Board application
+            port to serve web application
         """
 
         from http.server import HTTPServer, CGIHTTPRequestHandler
