@@ -23,10 +23,8 @@ window.app.controller('TfidfController', function ($scope, $http) {
     });
     $http.get("tfidf.json")
         .then(function (result) {
-            var data = result["data"];
-            $scope.allFeatures = data;
-            var features = $scope.allFeatures.slice(0, 100000);
-            $scope.features = features;
+            var features = result["data"];
+            $scope.numberFeatures = features.length;
 
             function createTfidfTooltip(feature) {
                 return "<div class='point-tooltip'>" +

@@ -24,11 +24,9 @@ window.app.controller('CountController', function ($scope, $http) {
     $http.get("count.json")
         .then(function (result) {
             var data = result["data"];
-            $scope.allFeatures = data;
-            var features = $scope.allFeatures.slice(0, 100000);
-            $scope.features = features;
+            var features = data;
 
-            function createTfidfTooltip(feature) {
+            function createTooltip(feature) {
                 return "<div class='point-tooltip'>" +
                     feature["token"] + " " +
                     "(" +
@@ -40,12 +38,13 @@ window.app.controller('CountController', function ($scope, $http) {
             // features = _.filter(features, function (feature) {
             //     return feature["period"] < 100;
             // });
+            $scope.numberFeatures = features.length;
             var series = _.map(features, function (feature) {
                 var random_ngram = feature["ngram"] - Math.random();
                 return {
                     "name": feature["token"],
                     "value": [feature["period"], random_ngram],
-                    "tooltip": createTfidfTooltip(feature)
+                    "tooltip": createTooltip(feature)
                 }
             });
             draw(series);
@@ -72,7 +71,7 @@ window.app.controller('CountController', function ($scope, $http) {
             })])
             .range([height, 0]);
 
-        var chart = d3.select('#tfidf')
+        var chart = d3.select('#count')
             .append('svg:svg')
             .attr('width', width + margin.right + margin.left)
             .attr('height', height + margin.top + margin.bottom)
