@@ -3,7 +3,7 @@ import numpy as np
 
 
 class CountVectorizer(feature_extraction.text.CountVectorizer):
-    """Convert a collection of text documents to a matrix of token counts
+    """ Convert a collection of text documents to a matrix of token counts
     This implementation produces a sparse representation of the counts using
     scipy.sparse.csr_matrix.
     If you do not provide an a-priori dictionary and you do not use an analyzer
@@ -143,7 +143,7 @@ class CountVectorizer(feature_extraction.text.CountVectorizer):
                                               binary=binary, dtype=dtype)
 
     def fit_transform(self, raw_documents, y=None):
-        """Learn the vocabulary dictionary and return term-document matrix.
+        """ Learn the vocabulary dictionary and return term-document matrix.
         This is equivalent to fit followed by transform, but more efficiently
         implemented.
 
