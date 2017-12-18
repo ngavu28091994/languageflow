@@ -1,7 +1,6 @@
 import numpy as np
 import torch
 import torch.nn as nn
-from languageflow.model.sgd import SGDClassifier
 from sklearn.preprocessing import LabelEncoder
 from torch.autograd import Variable
 import torch.optim as optim
@@ -67,7 +66,7 @@ class CategorizedDataset(Dataset):
         self.y = y
 
 
-class KimCNNClassifier(SGDClassifier):
+class KimCNNClassifier():
     """ An implementation of the model from Kim2014 paper
 
     Parameters
