@@ -110,6 +110,14 @@ MultilabelLogger
     :undoc-members:
     :inherited-members:
 
+TfidfLogger
+===========
+
+.. autoclass:: languageflow.log.tfidf.TfidfLogger
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 ******************
 languageflow.board
 ******************
