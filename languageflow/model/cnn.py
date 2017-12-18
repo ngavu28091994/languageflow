@@ -66,7 +66,7 @@ class CategorizedDataset(Dataset):
         self.y = y
 
 
-class KimCNNClassifier:
+class KimCNNClassifier(object):
     """ An implementation of the model from Kim2014 paper
 
     Parameters
