@@ -7,10 +7,8 @@ import numpy as np
 
 
 class XGBoostClassifier(BaseEstimator, ClassifierMixin):
-    """
-    A simple wrapper around XGBoost
-    more details:
-    https://github.com/dmlc/xgboost/wiki/Parameters
+    """ A simple wrapper around XGBoost
+    More details: https://github.com/dmlc/xgboost/wiki/Parameters
 
     Parameters
     ----------
