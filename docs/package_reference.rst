@@ -48,7 +48,7 @@ XGBoostClassifier
     :inherited-members:
 
 KimCNNClassifier
-==================
+================
 
 .. autoclass:: languageflow.model.cnn.KimCNNClassifier
     :members:
