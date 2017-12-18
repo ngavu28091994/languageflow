@@ -7,10 +7,21 @@ from os.path import dirname, join
 class Board:
     """
     Visualize analyzed results
+
+    Examples
+    --------
+    >>> from languageflow.board import Board
+    >>> from languageflow.log.tfidf import TfidfLogger
+    >>> log_folder = join(dirname(__file__), "log")
+    >>> model_folder = join(dirname(__file__), "model")
+    >>> board = Board(log_folder)
+    >>> MultilabelLogger.log(X_test, y_test, y_pred, log_folder=log_folder)
+    >>> TfidfLogger.log(model_folder=model_folder, log_folder=log_folder)
+    >>> board.serve()
     """
     def __init__(self, log_folder):
         self.log_folder = log_folder
-        """
+        """ Reset log folder
 
         Parameters
         ----------

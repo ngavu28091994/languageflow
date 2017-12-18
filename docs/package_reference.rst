@@ -116,7 +116,10 @@ languageflow.board
 
 .. automodule:: languageflow.board
 
-board
+Board
 ================
 
-.. autofunction:: languageflow.board.board
+.. autoclass:: languageflow.board.Board
+    :members:
+    :undoc-members:
+    :inherited-members:
