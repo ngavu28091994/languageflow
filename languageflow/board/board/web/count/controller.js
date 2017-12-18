@@ -37,11 +37,14 @@ window.app.controller('CountController', function ($scope, $http) {
                     ")</div>";
             }
 
+            // features = _.filter(features, function (feature) {
+            //     return feature["period"] < 100;
+            // });
             var series = _.map(features, function (feature) {
                 var random_ngram = feature["ngram"] - Math.random();
                 return {
                     "name": feature["token"],
-                    "value": [feature["df"], random_ngram],
+                    "value": [feature["period"], random_ngram],
                     "tooltip": createTfidfTooltip(feature)
                 }
             });
@@ -53,20 +56,19 @@ window.app.controller('CountController', function ($scope, $http) {
             width = 1280 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        var x = d3.scale.pow(5)
+        var maxX = d3.max(data, function (d) {
+            return d["value"][0];
+        });
+        var x = d3.scale.linear()
             .domain([
-                d3.min(data, function (d) {
-                    return d["value"][0];
-                }) - 0.05,
-                d3.max(data, function (d) {
-                    return d["value"][0];
-                }) + 0.05
+                0,
+                maxX * 1.1
             ])
             .range([0, width]);
 
         var y = d3.scale.linear()
             .domain([0, d3.max(data, function (d) {
-                return d["value"][1];
+                return d["value"][1] + 0.05;
             })])
             .range([height, 0]);
 
@@ -137,12 +139,12 @@ window.app.controller('CountController', function ($scope, $http) {
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
-            // .on("mouseout", function (d) {
-            //     tooltip
-            //         .transition()
-            //         .duration(200)
-            //         .style("opacity", 0)
-            // });
+            .on("mouseout", function (d) {
+                tooltip
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0)
+            });
     }
 });
 
