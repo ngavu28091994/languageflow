@@ -31,7 +31,6 @@ languageflow.model
 
 .. automodule:: languageflow.model
 
-
 SGDClassifier
 =============
 
