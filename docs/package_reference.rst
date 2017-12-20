@@ -107,3 +107,4 @@ CountLogger
 .. autoclass:: languageflow.log.count.CountLogger
     :members:
     :undoc-members:
+    :inherited-members:
