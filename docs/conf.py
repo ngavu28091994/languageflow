@@ -281,7 +281,7 @@ texinfo_documents = [
 # texinfo_no_detailmenu = False
 
 autodoc_mock_imports = [
-    "sklearn",
+    # "sklearn",
     "sklearn.preprocessing",
     "sklearn.model_selection",
     "sklearn.metrics",
