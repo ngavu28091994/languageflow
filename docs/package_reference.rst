@@ -108,17 +108,3 @@ CountLogger
     :members:
     :undoc-members:
     :inherited-members:
-
-******************
-languageflow.board
-******************
-
-.. automodule:: languageflow.board
-
-Board
-================
-
-.. autoclass:: languageflow.board.Board
-    :members:
-    :undoc-members:
-    :inherited-members:
