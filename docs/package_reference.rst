@@ -24,12 +24,29 @@ NumberRemover
     :undoc-members:
     :inherited-members:
 
+CountVectorizer
+===============
+
+.. autoclass:: languageflow.transformer.count.CountVectorizer
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+TfidfVectorizer
+===============
+
+.. autoclass:: languageflow.transformer.tfidf.TfidfVectorizer
+    :members:
+    :undoc-members:
+    :inherited-members:
+
 
 ******************
 languageflow.model
 ******************
 
 .. automodule:: languageflow.model
+
 
 SGDClassifier
 =============
@@ -48,7 +65,7 @@ XGBoostClassifier
     :inherited-members:
 
 KimCNNClassifier
-================
+==================
 
 .. autoclass:: languageflow.model.cnn.KimCNNClassifier
     :members:
@@ -105,6 +122,20 @@ CountLogger
 ===========
 
 .. autoclass:: languageflow.log.count.CountLogger
+    :members:
+    :undoc-members:
+    :inherited-members:
+
+******************
+languageflow.board
+******************
+
+.. automodule:: languageflow.board
+
+Board
+================
+
+.. autoclass:: languageflow.board.Board
     :members:
     :undoc-members:
     :inherited-members:
