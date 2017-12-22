@@ -32,20 +32,20 @@ class TestTaggedFeature(TestCase):
 
     def test_apply_function(self):
         self.assertEquals("người", apply_function("lower", "NGƯỜI"))
-        self.assertEquals(True, apply_function("istitle", "B-NP"))
-        self.assertEquals(True, apply_function("isallcap", "N"))
-        self.assertEquals("True", apply_function("isdigit", "1"))
-        self.assertEquals("True", apply_function("is_in_dict", "người"))
-        self.assertEquals("False", apply_function("is_in_dict", "Thoát nước Hà Nội "))
+        self.assertEqual(True, apply_function("istitle", "B-NP"))
+        self.assertEqual(True, apply_function("isallcap", "N"))
+        self.assertEqual("True", apply_function("isdigit", "1"))
+        self.assertEqual("True", apply_function("is_in_dict", "người"))
+        self.assertEqual("False", apply_function("is_in_dict", "Thoát nước Hà Nội "))
 
     def test_word2features(self):
         sent = [["người", "N", "B-NP"], ["nghèo", "A", "I-NP"]]
         expected = word2features(sent, i=0, template=template)[0]
         actual = "T[0].lower=người"
-        self.assertEquals(expected, actual)
+        self.assertEqual(expected, actual)
 
     def test_word2features_2(self):
         sent = [["người", "N", "B-NP"], ["nghèo", "A", "I-NP"]]
         expected = word2features(sent, i=1, template=template)[0]
         actual = "T[0].lower=nghèo"
-        self.assertEquals(expected, actual)
+        self.assertEqual(expected, actual)
