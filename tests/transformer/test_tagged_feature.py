@@ -31,7 +31,7 @@ class TestTaggedFeature(TestCase):
         self.assertEqual(["T[1][2]=B-NP"], template2features(sent, i=-1, token_syntax="T[1][2]", debug=True))
 
     def test_apply_function(self):
-        self.assertEquals("người", apply_function("lower", "NGƯỜI"))
+        self.assertEqual("người", apply_function("lower", "NGƯỜI"))
         self.assertEqual(True, apply_function("istitle", "B-NP"))
         self.assertEqual(True, apply_function("isallcap", "N"))
         self.assertEqual("True", apply_function("isdigit", "1"))

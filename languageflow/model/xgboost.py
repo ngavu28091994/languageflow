@@ -1,6 +1,8 @@
 import random
-import xgboost as xgb
-
+import warnings
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore")
+    import xgboost as xgb
 from sklearn.base import BaseEstimator, ClassifierMixin
 
 import numpy as np
@@ -62,13 +64,15 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
                  random_state=None,
                  watchlist=None,
                  n_jobs=4,
-                 n_iter=150):
+                 n_iter=150,
+                 silent=1,
+                 verbose_eval=True):
 
         if random_state is None:
             random_state = random.randint(0, 1000000)
 
         param = {
-            'silent': 1,
+            'silent': silent,
             'verbose': 0,
             'use_buffer': True,
             'base_score': inital_bias,
@@ -88,7 +92,8 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
             'objective': objective,
             'eval_metric': metric,
             'seed': random_state,
-            'num_class': num_classes
+            'num_class': num_classes,
+            'verbose_eval': verbose_eval
         }
         self.param = param
         if not watchlist:
@@ -120,10 +125,10 @@ class XGBoostClassifier(BaseEstimator, ClassifierMixin):
             for i, ent in enumerate(self.wl):
                 ent, lbl = ent
                 wl.append((self.convert(ent, lbl), 'test-' + str(i)))
-            self.booster_ = xgb.train(self.param, X, self.n_iter, wl)
+            self.booster_ = xgb.train(self.param, X, self.n_iter, wl, verbose_eval=self.param["verbose_eval"])
         else:
             self.booster_ = xgb.train(self.param, X, self.n_iter,
-                                      [(X, 'train')])
+                                      [(X, 'train')], verbose_eval=self.param["verbose_eval"])
 
         return self
 

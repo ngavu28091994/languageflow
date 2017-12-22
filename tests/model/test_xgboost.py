@@ -1,5 +1,4 @@
 from unittest import TestCase
-
 from languageflow.model.xgboost import XGBoostClassifier
 
 
@@ -8,7 +7,7 @@ class TestXGBoost(TestCase):
     def test_xgboost(self):
         X = [[0, 0], [0, 1], [1, 0], [1, 1]]
         y = [0, 0, 0, 1]
-        estimator = XGBoostClassifier()
+        estimator = XGBoostClassifier(verbose_eval=False)
         estimator.fit(X, y)
 
         X_test = [[1, 0], [0, 1]]
