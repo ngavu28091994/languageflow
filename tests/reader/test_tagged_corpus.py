@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from unittest import TestCase, skip
 from os.path import join, dirname
 from languageflow.reader.tagged_corpus import TaggedCorpus

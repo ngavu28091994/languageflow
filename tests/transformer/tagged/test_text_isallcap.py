@@ -7,8 +7,8 @@ from languageflow.transformer.tagged_feature import text_isallcap
 class TestTextIsTitle(TestCase):
     def test_true(self):
         words = [
-            "ABC",
-            "ĐEF"
+            "ĐEF",
+            "ABC"
         ]
         for word in words:
             self.assertTrue(text_isallcap(word))

@@ -31,12 +31,12 @@ class TestTaggedFeature(TestCase):
         self.assertEqual(["T[1][2]=B-NP"], template2features(sent, i=-1, token_syntax="T[1][2]", debug=True))
 
     def test_apply_function(self):
-        self.assertEqual("người", apply_function("lower", "NGƯỜI"))
+        self.assertEqual(u"người", apply_function("lower", u"NGƯỜI"))
         self.assertEqual(True, apply_function("istitle", "B-NP"))
         self.assertEqual(True, apply_function("isallcap", "N"))
         self.assertEqual("True", apply_function("isdigit", "1"))
-        self.assertEqual("True", apply_function("is_in_dict", "người"))
-        self.assertEqual("False", apply_function("is_in_dict", "Thoát nước Hà Nội "))
+        self.assertEqual("True", apply_function("is_in_dict", u"người"))
+        self.assertEqual("False", apply_function("is_in_dict", u"Thoát nước Hà Nội "))
 
     def test_word2features(self):
         sent = [["người", "N", "B-NP"], ["nghèo", "A", "I-NP"]]

@@ -1,13 +1,21 @@
+import sys
+
 class NumberRemover:
     """
     Remove numbers in documents
     """
+
     def __init__(self):
-        numbers = "0123456789"
-        self.remover = str.maketrans("", "", numbers)
+        pass
 
     def _remove(self, document):
-        return document.translate(self.remover)
+        numbers = "0123456789"
+
+        if sys.version_info < (3, 0, 0):
+            return document.translate(None, numbers)
+        else:
+            remover = str.maketrans("", "", numbers)
+            return document.translate(remover)
 
     def transform(self, raw_documents):
         """

@@ -4,6 +4,8 @@ import re
 
 from os.path import join, dirname
 
+from underthesea.feature_engineering.text import Text
+
 from languageflow.reader.dictionary_loader import DictionaryLoader
 
 words = DictionaryLoader(join(dirname(__file__), "Viet74K.txt")).words
@@ -17,8 +19,8 @@ def text_lower(word):
 def text_isdigit(word):
     return str(word.isdigit())
 
-
 def text_isallcap(word):
+    word = Text(word)
     for letter in word:
         if not letter.istitle():
             return False
@@ -26,6 +28,7 @@ def text_isallcap(word):
 
 
 def text_istitle(word):
+    word = Text(word)
     if len(word) == 0:
         return False
     try:
