@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use Underthesea Flow in a project::
+To use LanguageFlow in a project::
 
-    import underthesea_flow
+    import languageflow

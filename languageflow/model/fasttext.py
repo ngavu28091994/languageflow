@@ -1,4 +1,8 @@
+from __future__ import absolute_import
 import os
+
+from underthesea.feature_engineering.text import Text
+
 import fasttext as ft
 from underthesea.util.file_io import write
 
@@ -13,11 +17,11 @@ class FastTextClassifier:
     def fit(self, X, y, model_filename=None):
         """Fit FastText according to X, y
 
-        Parameters:
+        Parameters
         ----------
-        X : list of text
+        X : list of string
             each item is a raw text
-        y: list of text
+        y : list of string
             each item is a label
         """
         train_file = "temp.train"
@@ -25,7 +29,7 @@ class FastTextClassifier:
         y = [_.replace(" ", "-") for _ in y]
         lines = ["{}{} , {}".format(self.prefix, j, i) for i, j in zip(X, y)]
         content = "\n".join(lines)
-        write(train_file, content)
+        write(train_file, Text(content))
         if model_filename:
             self.estimator = ft.supervised(train_file, model_filename)
         else:
@@ -39,16 +43,17 @@ class FastTextClassifier:
         return label
 
     def predict(self, X):
-        """ Predict
+        """ In order to obtain the most likely label for a list of text
 
         Parameters
         ----------
-        X: {array-like} or raw text
+        X : list of string
+            Raw texts
 
         Returns
         -------
-        C : array or a label
-            Returns predicts values.
+        C : list of string
+            List labels
         """
         x = X
         if not isinstance(X, list):

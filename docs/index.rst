@@ -1,18 +1,26 @@
-Welcome to Underthesea Flow's documentation!
+LanguageFlow documentation
 ======================================
 
-Contents:
+Data loaders and abstractions for text and NLP
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :caption: Notes
 
    readme
    installation
    usage
-   modules
    contributing
    authors
    history
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Package Reference
+
+   package_reference
+
+
 
 Indices and tables
 ==================

@@ -11,8 +11,6 @@ from sklearn.preprocessing import MultiLabelBinarizer
 import time
 
 from underthesea.util.file_io import write
-
-from languageflow.model.fasttext import FastTextClassifier
 from languageflow.model.sgd import SGDClassifier
 from languageflow.validation.validation import TrainTestSplitValidation, \
     CrossValidation
@@ -34,7 +32,7 @@ class Experiment:
         self.validation = validation
         self.log_folder = "."
 
-    def run(self, transformers):
+    def train(self):
         start = time.time()
 
         try:
@@ -79,11 +77,22 @@ class Experiment:
             print("Error:", e)
         return time_result
 
-    def save_model(self, model_filename=None):
+    def export(self, model_filename=None):
         estimators = [OneVsRestClassifier, SGDClassifier]
         for estimator in estimators:
             if isinstance(self.estimator, estimator):
                 self.estimator.fit(self.X, self.y)
-                joblib.dump(self.estimator, model_filename)
+                joblib.dump(self.estimator, model_filename, protocol=2)
+                return
+
+        from languageflow.model.fasttext import FastTextClassifier
         if isinstance(self.estimator, FastTextClassifier):
             self.estimator.fit(self.X, self.y, model_filename)
+            return
+
+        from languageflow.model.cnn import KimCNNClassifier
+        if isinstance(self.estimator, KimCNNClassifier):
+            self.estimator.fit(self.X, self.y)
+            joblib.dump(self.estimator, model_filename, protocol=2)
+            return
+

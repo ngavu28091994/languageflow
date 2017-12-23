@@ -20,7 +20,7 @@ except ImportError:
     from urllib.request import urlopen
 
 
-GITHUB_REPO = 'rain1024/underthesea_flow'
+GITHUB_REPO = 'undertheseanlp/languageflow'
 TRAVIS_CONFIG_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), '.travis.yml')
 

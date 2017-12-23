@@ -5,10 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from torch.autograd import Variable
 import torch.optim as optim
 import torch.nn.functional as F
-import random
-
 from torch.utils.data import Dataset, DataLoader
-
 from languageflow.transformer.word_vector import WordVectorTransformer
 
 USE_CUDA = torch.cuda.is_available()
@@ -20,16 +17,16 @@ ByteTensor = torch.cuda.ByteTensor if USE_CUDA else torch.ByteTensor
 
 
 class TextCNN(nn.Module):
-    def __init__(self, vocab_size, embedding_dim, output_size, n_kernel=100,
+    def __init__(self, vocab_size, embedding_dim, output_size, num_kernel=100,
                  kernel_sizes=[3, 4, 5], dropout=0.5):
         super(TextCNN, self).__init__()
 
         self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
         self.convs = nn.ModuleList(
-            [nn.Conv2d(1, n_kernel, (k, embedding_dim)) for k in
+            [nn.Conv2d(1, num_kernel, (k, embedding_dim)) for k in
              kernel_sizes])
         self.dropout = nn.Dropout(dropout)
-        self.fc = nn.Linear(len(kernel_sizes) * n_kernel, output_size)
+        self.fc = nn.Linear(len(kernel_sizes) * num_kernel, output_size)
 
     def init_weights(self, pretrained_word_vectors, is_static=False):
         self.embedding.weight = nn.Parameter(
@@ -59,7 +56,7 @@ class CategorizedDataset(Dataset):
         return self.X[index], self.y[index]
 
     def __len__(self):
-        return len(y)
+        return len(self.y)
 
     def __init__(self, X, y):
         self.X = X
@@ -67,7 +64,52 @@ class CategorizedDataset(Dataset):
 
 
 class KimCNNClassifier():
+    """ An implementation of the model from Kim2014 paper
+
+    Parameters
+    ----------
+    batch_size: int
+        Number of samples per gradient update
+    kernel_sizes: list of int
+    num_kernel: int
+    embedding_dim: int
+        only for CNN-rand
+    epoch: int
+        Number of epochs to train the model
+    lr: float, optional
+        Learning rate (default: 1e-3)
+
+    Examples
+    --------
+    >>> from languageflow.flow import Flow
+    >>> flow = Flow()
+    >>> flow.data(X, y)
+    >>> model = Model(KimCNNClassifier(batch_size=5, epoch=150, embedding_dim=300)
+    >>> flow.add_model(model, "KimCNNClassifier"))
+    >>> flow.train()
+    """
+
+    def __init__(self, batch_size=50, kernel_sizes=[3, 4, 5], num_kernel=100,
+                 embedding_dim=50,
+                 epoch=50, lr=0.001):
+        self.batch_size = batch_size
+        self.kernel_sizes = kernel_sizes
+        self.num_kernel = num_kernel
+        self.embedding_dim = embedding_dim
+
+        self.epoch = epoch
+        self.lr = lr
+
     def fit(self, X, y):
+        """Fit KimCNNClassifier according to X, y
+
+        Parameters
+        ----------
+        X : list of string
+            each item is a raw text
+        y : list of string
+            each item is a label
+        """
         ####################
         # Data Loader
         ####################
@@ -82,27 +124,32 @@ class KimCNNClassifier():
         self.y_transformer = y_transformer
 
         dataset = CategorizedDataset(X, y)
-        dataloader = DataLoader(dataset, batch_size=2, shuffle=True,
+        dataloader = DataLoader(dataset,
+                                batch_size=self.batch_size,
+                                shuffle=True,
                                 num_workers=4)
 
         ####################
         # Model
         ####################
-        BATCH_SIZE = 50
-        KERNEL_SIZES = [3, 4, 5]
-        KERNEL_DIM = 100
+        KERNEL_SIZES = self.kernel_sizes
+        NUM_KERNEL = self.num_kernel
+        EMBEDDING_DIM = self.embedding_dim
+
         model = TextCNN(
             vocab_size=word_vector_transformer.get_vocab_size(),
-            embedding_dim=5,
-            output_size=3)
+            embedding_dim=EMBEDDING_DIM,
+            output_size=len(self.y_transformer.classes_),
+            kernel_sizes=KERNEL_SIZES,
+            num_kernel=NUM_KERNEL)
         if USE_CUDA:
             model = model.cuda()
 
         ####################
         # Train
         ####################
-        EPOCH = 50
-        LR = 0.001
+        EPOCH = self.epoch
+        LR = self.lr
 
         loss_function = nn.CrossEntropyLoss()
         optimizer = optim.Adam(model.parameters(), lr=LR)
@@ -130,47 +177,21 @@ class KimCNNClassifier():
         self.model = model
 
     def predict(self, X):
+        """
+
+        Parameters
+        ----------
+        X : list of string
+            Raw texts
+
+        Returns
+        -------
+        C : list of string
+            List labels
+        """
         x = self.word_vector_transformer.transform(X)
         x = Variable(LongTensor(x))
         y = self.model(x)
         y = torch.max(y, 1)[1].data.numpy()
         y = self.y_transformer.inverse_transform(y)
         return y
-
-
-X = [
-    "đồ ăn tốt",
-    "món ăn thực sự rất ngon",
-    "ngon thật",
-    "giá rẻ",
-    # NEGATIVE
-    "chán cực kì",
-    "phục vụ chán quá",
-    "đồ uống chán lắm",
-    "vệ sinh bẩn",
-    "phục vụ còn quá kém",
-    # NEUTRAL
-    "cũng bình thường"
-]
-y = ["POSITIVE", "POSITIVE", "POSITIVE", "POSITIVE",
-     "NEGATIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE",
-     "NEUTRAL"]
-
-estimator = KimCNNClassifier()
-estimator.fit(X, y)
-
-X_test = [
-    "chán",
-    "tốt quá",
-    "vệ sinh",
-    "vệ sinh bẩn",
-    "bẩn",
-    "tôi thấy thái độ của nhân viên không tốt",
-    "quán này rẻ nè"
-]
-y_pred = estimator.predict(X_test)
-print("Test results")
-for i, x in enumerate(X_test):
-    print("{} -> {}".format(x, y_pred[i]))
-
-print(estimator.predict(X))

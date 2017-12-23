@@ -10,4 +10,4 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Bui Nhat Anh <buinhatanh1208@gmail.com>

@@ -18,7 +18,10 @@ class TestFlow(TestCase):
         flow.data(X=X, y=y)
         model = Model(SGDClassifier(), "SGDClassfier")
         flow.add_model(model)
-        mkdir("temp")
+        try:
+            mkdir("temp")
+        except:
+            pass
         flow.export("SGDClassfier", export_folder="temp")
         shutil.rmtree("temp")
 

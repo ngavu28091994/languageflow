@@ -1,11 +1,6 @@
-import abc
-
-
-class Transformer(abc.ABC):
-    @abc.abstractmethod
+class Transformer:
     def transform(self):
         pass
 
-    @abc.abstractmethod
     def fit_transform(self):
         pass
