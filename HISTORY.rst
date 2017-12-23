@@ -6,9 +6,17 @@ History
 ------------------
 
 * Add data module to handle data downloading and data preprocessing
-* Integrate LanguageBoard in board module
+* Add many new models: SGDClassifier, XGBoostClassier, FastTextClassifier, CRF
+* Add new feature: LanguageBoard
+
+
+1.1.5 (2017-12-11)
+------------------
+
+* Refactor project to integrate with underthesea experiment
 
 0.1.0 (2017-09-18)
 ------------------
 
 * First release on PyPI.
+
