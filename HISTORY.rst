@@ -8,6 +8,8 @@ History
 * Add data module to handle data downloading and data preprocessing
 * Add many new models: SGDClassifier, XGBoostClassier, FastTextClassifier, CRF
 * Add new feature: LanguageBoard
+* Automatic continuous integration with travis-ci
+* Build docs with readthedocs.org
 
 
 1.1.5 (2017-12-11)
