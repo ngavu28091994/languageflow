@@ -35,7 +35,7 @@ Stable version
 
     $ pip install https://github.com/undertheseanlp/languageflow/archive/master.zip
 
-Latest version
+Develop version
 
 .. code-block:: bash
 
