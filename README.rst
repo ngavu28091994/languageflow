@@ -15,22 +15,10 @@ LanguageFlow
         :target: https://travis-ci.org/magizbox/underthesea
 
 .. image:: https://readthedocs.com/projects/languageflow/badge/?version=latest
-        :target: http://languageflow.readthedocs.io/en/latest/
+        :target: http://languageflow.readthedocs.io/en/stable/
         :alt: Documentation Status
 
-Data loaders and abstractions for text and NLP
-
-* Free software: GNU General Public License v3
-* Documentation: `link <https://docs.google.com/document/d/e/2PACX-1vQH3FxuTwzOns9tjvvhrmpH6YqWng4JDJZ4fqEcb5BrTnIwEMZh3ZVeaGzFSwcIN70GRk40c2yn3L_L/pub>`_
-
-Prerequisite
-----------------------------------------
-
-Install dependencies
-
-.. code-block:: bash
-
-    $ pip install fasttext
+LanguageFlow is a toolkit to manage corpus, train and develop NLP models
 
 
 Installation
@@ -43,7 +31,7 @@ Stable version
 
     $ pip install https://github.com/undertheseanlp/languageflow/archive/master.zip
 
-Latest version
+Develop version
 
 .. code-block:: bash
 
