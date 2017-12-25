@@ -18,7 +18,7 @@ LanguageFlow
         :target: http://languageflow.readthedocs.io/en/stable/
         :alt: Documentation Status
 
-Train NLP Models
+LanguageFlow is a toolkit to manage corpus, NLP Models
 
 
 Installation
