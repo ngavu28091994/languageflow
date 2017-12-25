@@ -5,10 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from torch.autograd import Variable
 import torch.optim as optim
 import torch.nn.functional as F
-import random
-
 from torch.utils.data import Dataset, DataLoader
-
 from languageflow.transformer.word_vector import WordVectorTransformer
 
 USE_CUDA = torch.cuda.is_available()

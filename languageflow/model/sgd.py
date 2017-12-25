@@ -13,6 +13,9 @@ class SGDClassifier(linear_model.SGDClassifier):
     """
 
     def __init__(self, *args, **kwargs):
+        # fix FutureWarning when both tol and max_iter is not set
+        if 'tol' not in kwargs and 'max_iter' not in kwargs:
+            kwargs['tol'] = 1e-3
         super(SGDClassifier, self).__init__(*args, **kwargs)
 
     def fit(self, X, y, coef_init=None, intercept_init=None,

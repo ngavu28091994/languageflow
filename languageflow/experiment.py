@@ -82,14 +82,17 @@ class Experiment:
         for estimator in estimators:
             if isinstance(self.estimator, estimator):
                 self.estimator.fit(self.X, self.y)
-                joblib.dump(self.estimator, model_filename)
+                joblib.dump(self.estimator, model_filename, protocol=2)
+                return
 
         from languageflow.model.fasttext import FastTextClassifier
         if isinstance(self.estimator, FastTextClassifier):
             self.estimator.fit(self.X, self.y, model_filename)
+            return
 
         from languageflow.model.cnn import KimCNNClassifier
         if isinstance(self.estimator, KimCNNClassifier):
             self.estimator.fit(self.X, self.y)
-            joblib.dump(self.estimator, model_filename)
+            joblib.dump(self.estimator, model_filename, protocol=2)
+            return
 

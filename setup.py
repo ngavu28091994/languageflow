@@ -11,21 +11,34 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [
-    # TODO: put package requirements here
+install_requirements = [
+    "future",
+    "pandas==0.21.1",
+    "numpy",
+    "scipy",
+    "joblib",
+    "python-crfsuite==0.9.5",
+    "scikit-learn",
+    "xgboost"
 ]
 
 setup_requirements = [
-    # TODO(rain1024): put setup requirements (distutils extensions, etc.) here
+    "pandas==0.21.1",
+    "numpy",
+    "joblib"
 ]
 
 test_requirements = [
     # TODO: put package test requirements here
+    "tox",
+    "pandas==0.21.1",
+    "numpy",
+    "joblib"
 ]
 
 setup(
     name='languageflow',
-    version='1.1.6-alpha-7',
+    version='1.1.6-rc',
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",
@@ -33,7 +46,7 @@ setup(
     url='https://github.com/undertheseanlp/languageflow',
     packages=find_packages(include=['languageflow']),
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=install_requirements,
     license="MIT license",
     zip_safe=False,
     keywords='languageflow',
@@ -47,6 +60,7 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6'
     ],

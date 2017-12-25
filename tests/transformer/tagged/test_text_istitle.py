@@ -15,6 +15,7 @@ class TestTextIsTitle(TestCase):
             "This Is String Example"
         ]
         for word in words:
+            print(word)
             self.assertTrue(text_istitle(word))
 
     def test_false(self):

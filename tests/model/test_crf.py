@@ -8,5 +8,5 @@ class TestCRF(TestCase):
     def test_crf(self):
         crf = CRF()
         crf.fit(['x', 'y'], ['a', 'b'])
-        print(crf.predict())
+        # print(crf.predict(['x']))
         # self.assertEquals(crf.predict())

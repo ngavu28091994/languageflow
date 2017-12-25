@@ -1,4 +1,8 @@
+from __future__ import absolute_import
 import os
+
+from underthesea.feature_engineering.text import Text
+
 import fasttext as ft
 from underthesea.util.file_io import write
 
@@ -25,7 +29,7 @@ class FastTextClassifier:
         y = [_.replace(" ", "-") for _ in y]
         lines = ["{}{} , {}".format(self.prefix, j, i) for i, j in zip(X, y)]
         content = "\n".join(lines)
-        write(train_file, content)
+        write(train_file, Text(content))
         if model_filename:
             self.estimator = ft.supervised(train_file, model_filename)
         else:

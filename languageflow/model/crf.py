@@ -2,7 +2,7 @@ import pycrfsuite
 
 
 class CRF:
-    def __init__(self, params=None):
+    def __init__(self, params={'c1':0.1, 'c2':0.01, 'feature.minfreq':0}):
         self.estimator = None
         self.params = params
 
@@ -22,6 +22,7 @@ class CRF:
             trainer.append(xseq, yseq)
 
         trainer.set_params(self.params)
+        self.estimator = trainer
 
     def predict(self, X):
         """Predict class labels for samples in X.
