@@ -1,6 +1,6 @@
 import json
 from os.path import join
-from underthesea.util.file_io import write
+from languageflow.util.file_io import write
 from sklearn import metrics
 from sklearn.preprocessing import LabelBinarizer
 
