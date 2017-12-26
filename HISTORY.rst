@@ -2,7 +2,7 @@
 History
 =======
 
-1.6.1 (inprogress)
+1.1.6 (2017-12-26)
 ------------------
 
 * Add data module to handle data downloading and data preprocessing

@@ -15,7 +15,7 @@ LanguageFlow
         :target: https://travis-ci.org/magizbox/underthesea
 
 .. image:: https://readthedocs.com/projects/languageflow/badge/?version=latest
-        :target: http://languageflow.readthedocs.io/en/stable/
+        :target: http://languageflow.readthedocs.io/en/latest/
         :alt: Documentation Status
 
 LanguageFlow is a toolkit to manage corpus, train and develop NLP models
