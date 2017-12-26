@@ -18,8 +18,7 @@ LanguageFlow
         :target: http://languageflow.readthedocs.io/en/latest/
         :alt: Documentation Status
 
-LanguageFlow is a toolkit to manage corpus, train and develop NLP models
-
+Data loaders and abstractions for text and NLP
 
 Installation
 ----------------------------------------
