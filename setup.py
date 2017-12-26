@@ -23,9 +23,9 @@ install_requirements = [
 ]
 
 setup_requirements = [
-    "pandas",
-    "numpy",
-    "joblib"
+    # "pandas",
+    # "numpy",
+    # "joblib"
 ]
 
 test_requirements = [
