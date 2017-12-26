@@ -13,7 +13,7 @@ with open('HISTORY.rst') as history_file:
 
 install_requirements = [
     "future",
-    "pandas==0.21.1",
+    "pandas",
     "numpy",
     "scipy",
     "joblib",
@@ -23,7 +23,7 @@ install_requirements = [
 ]
 
 setup_requirements = [
-    "pandas==0.21.1",
+    "pandas",
     "numpy",
     "joblib"
 ]
@@ -31,7 +31,7 @@ setup_requirements = [
 test_requirements = [
     # TODO: put package test requirements here
     "tox",
-    "pandas==0.21.1",
+    "pandas",
     "numpy",
     "joblib"
 ]
