@@ -12,14 +12,14 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 install_requirements = [
-    # "future",
-    # "pandas",
-    # "numpy",
-    # "scipy",
-    # "joblib",
-    # "python-crfsuite==0.9.5",
-    # "scikit-learn",
-    # "xgboost"
+    "future",
+    "pandas",
+    "numpy",
+    "scipy",
+    "joblib",
+    "python-crfsuite==0.9.5",
+    "scikit-learn",
+    "xgboost"
 ]
 
 setup_requirements = [
