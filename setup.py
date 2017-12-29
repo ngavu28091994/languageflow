@@ -18,14 +18,14 @@ install_requirements = [
     "scipy",
     "joblib",
     "python-crfsuite==0.9.5",
-    "scikit-learn",
+    "scikit-learn==0.19.0",
     "xgboost"
 ]
 
 setup_requirements = [
-    "pandas",
-    "numpy",
-    "joblib"
+    # "pandas",
+    # "numpy",
+    # "joblib"
 ]
 
 test_requirements = [
