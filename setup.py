@@ -18,14 +18,14 @@ install_requirements = [
     "scipy",
     "joblib",
     "python-crfsuite==0.9.5",
-    "scikit-learn",
+    "scikit-learn==0.19.0",
     "xgboost"
 ]
 
 setup_requirements = [
-    "pandas",
-    "numpy",
-    "joblib"
+    # "pandas",
+    # "numpy",
+    # "joblib"
 ]
 
 test_requirements = [
@@ -38,7 +38,7 @@ test_requirements = [
 
 setup(
     name='languageflow',
-    version='1.1.6-rc.1',
+    version='1.1.6-rc.2',
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",

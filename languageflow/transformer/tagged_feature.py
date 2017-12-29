@@ -4,7 +4,7 @@ import re
 
 from os.path import join, dirname
 
-from underthesea.feature_engineering.text import Text
+from languageflow.transformer.text import Text
 
 from languageflow.reader.dictionary_loader import DictionaryLoader
 

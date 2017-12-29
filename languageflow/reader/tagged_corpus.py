@@ -4,7 +4,7 @@ import pandas as pd
 import io
 
 import shutil
-from underthesea.util.file_io import read, write
+from languageflow.util.file_io import read, write
 
 
 class TaggedCorpus:

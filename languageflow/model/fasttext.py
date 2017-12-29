@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 import os
 
-from underthesea.feature_engineering.text import Text
+from languageflow.transformer.text import Text
 
 import fasttext as ft
-from underthesea.util.file_io import write
+from languageflow.util.file_io import write
 
 
 class FastTextClassifier:

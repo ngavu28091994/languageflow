@@ -1,5 +1,5 @@
 from os.path import join, dirname
-from underthesea.util.file_io import read
+from languageflow.util.file_io import read
 
 
 class DictionaryLoader:
