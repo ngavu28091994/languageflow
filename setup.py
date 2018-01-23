@@ -42,7 +42,7 @@ setup(
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",
-    author_email='brother.rain.1024@gmail.com',
+    author_email='anhv.ict91@gmail.com',
     url='https://github.com/undertheseanlp/languageflow',
     packages=find_packages(include=['languageflow']),
     include_package_data=True,
