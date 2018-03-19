@@ -2,9 +2,10 @@ import pycrfsuite
 
 
 class CRF:
-    def __init__(self, params={'c1':0.1, 'c2':0.01, 'feature.minfreq':0}):
+    def __init__(self, params={'c1':0.1, 'c2':0.01, 'feature.minfreq':0}, filename=None):
         self.estimator = None
         self.params = params
+        self.filename = filename
 
     def fit(self, X, y):
         """Fit CRF according to X, y
@@ -22,7 +23,14 @@ class CRF:
             trainer.append(xseq, yseq)
 
         trainer.set_params(self.params)
-        self.estimator = trainer
+        if self.filename:
+            filename = self.filename
+        else:
+            filename = 'model.tmp'
+        trainer.train(filename)
+        tagger = pycrfsuite.Tagger()
+        tagger.open(filename)
+        self.estimator = tagger
 
     def predict(self, X):
         """Predict class labels for samples in X.
