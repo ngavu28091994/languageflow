@@ -11,34 +11,15 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-install_requirements = [
-    "future",
-    "pandas",
-    "numpy",
-    "scipy",
-    "joblib",
-    "python-crfsuite==0.9.5",
-    "scikit-learn==0.19.0",
-    "xgboost"
-]
+install_requirements = []
 
-setup_requirements = [
-    # "pandas",
-    # "numpy",
-    # "joblib"
-]
+setup_requirements = []
 
-test_requirements = [
-    # TODO: put package test requirements here
-    "tox",
-    "pandas",
-    "numpy",
-    "joblib"
-]
+test_requirements = []
 
 setup(
     name='languageflow',
-    version='1.1.6-rc.2',
+    version='1.1.7-alpha.1',
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",
