@@ -19,14 +19,9 @@ install_requirements = [
     "joblib",
     "python-crfsuite==0.9.5",
     "scikit-learn==0.19.0",
-    "xgboost"
 ]
 
-setup_requirements = [
-    # "pandas",
-    # "numpy",
-    # "joblib"
-]
+setup_requirements = []
 
 test_requirements = [
     # TODO: put package test requirements here
