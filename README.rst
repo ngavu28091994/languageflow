@@ -38,12 +38,14 @@ Dependencies:
 
 Install dependencies
 
-    pip install joblib future numpy scipy pandas
-    pip install scikit-learn==0.19.0
-    pip install python-crfsuite==0.9.5
-    pip install Cython
-    pip install -U fasttext --no-cache-dir --no-deps --force-reinstall
-    pip install xgboost
+.. code-block:: bash
+
+    $ pip install joblib future numpy scipy pandas
+    $ pip install scikit-learn==0.19.0
+    $ pip install python-crfsuite==0.9.5
+    $ pip install Cython
+    $ pip install -U fasttext --no-cache-dir --no-deps --force-reinstall
+    $ pip install xgboost
 
 
 Installation
