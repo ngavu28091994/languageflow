@@ -3,16 +3,16 @@ LanguageFlow
 ============
 
 .. image:: https://img.shields.io/pypi/v/languageflow.svg
-        :target: https://pypi.python.org/pypi/underthesea
+        :target: https://pypi.python.org/pypi/languageflow
 
 .. image:: https://img.shields.io/pypi/pyversions/languageflow.svg
-        :target: https://pypi.python.org/pypi/underthesea
+        :target: https://pypi.python.org/pypi/languageflow
 
 .. image:: https://img.shields.io/pypi/l/languageflow.svg
-        :target: https://pypi.python.org/pypi/underthesea
+        :target: https://pypi.python.org/pypi/languageflow
 
-.. image:: https://img.shields.io/travis/magizbox/underthesea.svg
-        :target: https://travis-ci.org/magizbox/underthesea
+.. image:: https://img.shields.io/travis/undertheseanlp/languageflow.svg
+        :target: https://travis-ci.org/undertheseanlp/languageflow
 
 .. image:: https://readthedocs.org/projects/languageflow/badge/?version=latest
         :target: http://languageflow.readthedocs.io/en/latest/
