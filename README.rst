@@ -14,7 +14,7 @@ LanguageFlow
 .. image:: https://img.shields.io/travis/magizbox/underthesea.svg
         :target: https://travis-ci.org/magizbox/underthesea
 
-.. image:: https://readthedocs.com/projects/languageflow/badge/?version=latest
+.. image:: https://readthedocs.org/projects/languageflow/badge/?version=latest
         :target: http://languageflow.readthedocs.io/en/latest/
         :alt: Documentation Status
 
