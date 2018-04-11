@@ -19,7 +19,7 @@ test_requirements = []
 
 setup(
     name='languageflow',
-    version='1.1.7',
+    version='1.1.8-alpha',
     description="Useful stuffs for NLP experiments",
     long_description=readme + '\n\n' + history,
     author="Vu Anh",
@@ -28,7 +28,7 @@ setup(
     packages=find_packages(include=['languageflow']),
     include_package_data=True,
     install_requires=install_requirements,
-    license="MIT license",
+    license="GNU General Public License v3",
     zip_safe=False,
     keywords='languageflow',
     entry_points={
