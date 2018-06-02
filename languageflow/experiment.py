@@ -12,7 +12,7 @@ import time
 
 from languageflow.util.file_io import write
 from languageflow.model.sgd import SGDClassifier
-from languageflow.validation.validation import TrainTestSplitValidation, \
+from languageflow.evaluation.validation import TrainTestSplitValidation, \
     CrossValidation
 
 

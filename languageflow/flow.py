@@ -7,7 +7,7 @@ from languageflow.experiment import Experiment
 from languageflow.transformer.count import CountVectorizer
 from languageflow.transformer.tfidf import TfidfVectorizer
 
-from languageflow.validation.validation import TrainTestSplitValidation
+from languageflow.evaluation.validation import TrainTestSplitValidation
 from languageflow.transformer.number import NumberRemover
 
 class Flow:
