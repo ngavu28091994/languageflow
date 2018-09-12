@@ -23,14 +23,6 @@ Data loaders and abstractions for text and NLP
 Requirements
 ------------
 
-Dependencies:
-
-* future, tox, joblib
-* numpy, scipy, pandas, scikit-learn==0.19.1
-* python-crfsuite
-* fasttext==0.8.3
-* xgboost
-
 Install dependencies
 
 .. code-block:: bash
