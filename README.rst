@@ -46,15 +46,12 @@ Install dependencies
 Installation
 ------------
 
-
-Stable version
-
 .. code-block:: bash
 
-    $ pip install https://github.com/undertheseanlp/languageflow/archive/master.zip
+    $ pip install languageflow
 
-Develop version
+Components
+------------
 
-.. code-block:: bash
-
-    $ pip install https://github.com/undertheseanlp/languageflow/archive/develop.zip
+* Transformers: NumberRemover, CountVectorizer, TfidfVectorizer
+* Models: SGDClassifier, XGBoostClassifier, KimCNNClassifier, FastTextClassifier, CRF
