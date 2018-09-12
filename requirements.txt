@@ -1,4 +1,3 @@
-underthesea==1.1.9a1
 joblib==0.11
 setuptools==38.4.0
 torch==0.4.0
