@@ -8,7 +8,7 @@ LanguageFlow
 .. image:: https://img.shields.io/pypi/pyversions/languageflow.svg
         :target: https://pypi.python.org/pypi/languageflow
 
-.. image:: https://img.shields.io/pypi/l/languageflow.svg
+.. image:: https://img.shields.io/badge/license-GNU%20General%20Public%20License%20v3-brightgreen.svg
         :target: https://pypi.python.org/pypi/languageflow
 
 .. image:: https://img.shields.io/travis/undertheseanlp/languageflow.svg
