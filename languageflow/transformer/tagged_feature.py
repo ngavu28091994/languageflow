@@ -44,33 +44,3 @@ functions = {
     "isdigit": text_isdigit,
     "is_in_dict": text_is_in_dict
 }
-
-
-def template2features(sent, i, template, debug=True):
-    """
-    :type token: object
-    """
-    # columns = []
-    # for j in range(len(sent[0])):
-    #     columns.append([t[j] for t in sent])
-    index1, index2, column, func, token_syntax = template
-    if debug:
-        prefix = "%s=" % token_syntax
-    else:
-        prefix = ""
-    if i + index1 < 0:
-        return "%sBOS" % prefix
-    if i + index1 >= len(sent):
-        return "%sEOS" % prefix
-    if index2 is not None:
-        if i + index2 >= len(sent):
-            return "%sEOS" % prefix
-        tmp = [sent[j][column] for j in range(i + index1, i + index2 + 1)]
-        word = " ".join(tmp)
-    else:
-        word = sent[i + index1][column]
-    if func is not None:
-        result = functions[func](word)
-    else:
-        result = word
-    return "%s%s" % (prefix, result)
