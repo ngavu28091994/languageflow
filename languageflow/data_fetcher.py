@@ -5,7 +5,7 @@ from pathlib import Path
 
 REPO = {
     "VNESES": {
-        "cache_dir": "datasets/VNESES",
+        "cache_dir": "datasets/LTA",
         "filepath": "VNESEScorpus.txt"
     }
 }
