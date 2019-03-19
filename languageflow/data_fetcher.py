@@ -23,7 +23,7 @@ class DataFetcher:
     @staticmethod
     def download_data(data):
         if data not in REPO:
-            print("No matching distribution found for '{data}'")
+            print(f"No matching distribution found for '{data}'")
             return
 
         filepath = REPO[data]["filepath"]
