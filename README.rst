@@ -47,3 +47,20 @@ Components
 
 * Transformers: NumberRemover, CountVectorizer, TfidfVectorizer
 * Models: SGDClassifier, XGBoostClassifier, KimCNNClassifier, FastTextClassifier, CRF
+
+Data
+------------
+
+Download a dataset using **download** command
+
+.. code-block:: bash
+
+    $ languageflow download [DATA]
+
+
+Datasets
+~~~~~~~~
+
+The datasets module currently contains:
+
+* PlaintextCorpus: VNESES, VNTQ_SMALL, VNTQ_BIG
