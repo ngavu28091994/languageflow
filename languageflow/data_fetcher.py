@@ -1,8 +1,10 @@
+import os
 import shutil
 from tabulate import tabulate
 from languageflow.datasets import REPO
 from languageflow.file_utils import cached_path, CACHE_ROOT
 from pathlib import Path
+import zipfile
 
 
 class DataFetcher:
@@ -36,6 +38,15 @@ class DataFetcher:
             cached_path(url, cache_dir=cache_dir)
             shutil.move(Path(CACHE_ROOT) / cache_dir / "VNTQcorpus-big.txt?dl=1",
                         Path(CACHE_ROOT) / cache_dir / filepath)
+
+        if data == "VNTC":
+            url = "https://www.dropbox.com/s/4iw3xtnkd74h3pj/VNTC.zip?dl=1"
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VNTC.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
 
     @staticmethod
     def list():

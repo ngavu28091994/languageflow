@@ -20,4 +20,11 @@ REPO = {
         "year": "2017",
         "filepath": "VNTQcorpus-big.txt"
     },
+    "VNTC": {
+        "cache_dir": "datasets/VNTC",
+        "type": "Categorized",
+        "license": "Open",
+        "year": "2007",
+        "filepath": ""
+    },
 }
