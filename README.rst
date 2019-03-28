@@ -64,3 +64,4 @@ Datasets
 The datasets module currently contains:
 
 * PlaintextCorpus: VNESES, VNTQ_SMALL, VNTQ_BIG
+* CategorizedCorpus: VNTC
