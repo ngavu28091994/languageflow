@@ -27,4 +27,11 @@ REPO = {
         "year": "2007",
         "filepath": ""
     },
+    "VLSP2013-WTK": {
+        "cache_dir": "datasets/VLSP2013-WTK",
+        "type": "Tagged",
+        "license": "Close",
+        "year": "2013",
+        "filepath": ""
+    }
 }

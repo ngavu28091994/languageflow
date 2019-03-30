@@ -10,14 +10,22 @@ def main(args=None):
 
 
 @main.command()
-@click.argument('data', required=False)
-@click.option('-f', '--force', is_flag=True, required=False)
-def download(data, force):
-    if data == None:
-        DataFetcher.list()
-    else:
-        DataFetcher.download_data(data)
-    # download_component(component, force)
+@click.argument('dataset', required=True)
+@click.argument('url', required=False)
+def download(dataset, url):
+    DataFetcher.download_data(dataset, url)
+
+
+@main.command()
+@click.option('-a', '--all', is_flag=True, required=False)
+def list(all):
+    DataFetcher.list(all)
+
+
+@main.command()
+@click.argument('data', required=True)
+def remove(data):
+    DataFetcher.remove(data)
 
 
 if __name__ == "__main__":
