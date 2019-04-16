@@ -40,5 +40,12 @@ REPO = {
         "license": "Close",
         "year": "2013",
         "filepath": ""
+    },
+    "VTB-CHUNK": {
+        "cache_dir": "datasets/VTB-CHUNK",
+        "type": "Tagged",
+        "license": "Close",
+        "year": "2017",
+        "filepath": ""
     }
 }
