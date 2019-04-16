@@ -9,3 +9,7 @@ class PlaintextCorpus(Corpus):
 
 class CategorizedCorpus(Corpus):
     pass
+
+
+class TaggedCorpus(Corpus):
+    pass
