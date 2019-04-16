@@ -54,5 +54,12 @@ REPO = {
         "license": "Close",
         "year": "2016",
         "filepath": ""
+    },
+    "VLSP2018-NER": {
+        "cache_dir": "datasets/VLSP2018-NER",
+        "type": "Tagged",
+        "license": "Close",
+        "year": "2018",
+        "filepath": ""
     }
 }
