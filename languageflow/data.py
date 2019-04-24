@@ -4,8 +4,10 @@ from typing import List
 class Corpus:
     pass
 
+
 class Sentence:
     pass
+
 
 class PlaintextCorpus(Corpus):
     def __init__(self, sentences):
@@ -13,7 +15,7 @@ class PlaintextCorpus(Corpus):
 
 
 class CategorizedCorpus(Corpus):
-    def __int__(
+    def __init__(
         self,
         train: List[Sentence],
         dev: List[Sentence],
@@ -34,6 +36,7 @@ class CategorizedCorpus(Corpus):
     @property
     def test(self) -> List[Sentence]:
         return self._test
+
 
 class TaggedCorpus(Corpus):
     pass

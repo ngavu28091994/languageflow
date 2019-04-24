@@ -173,8 +173,8 @@ class DataFetcher:
         sentences_train: List[Sentence] = DataFetcher.read_text_classification_file(train_file)
         sentences_dev: List[Sentence] = DataFetcher.read_text_classification_file(dev_file)
         sentences_test: List[Sentence] = DataFetcher.read_text_classification_file(test_file)
-
-        return CategorizedCorpus(sentences_train, sentences_dev, sentences_test)
+        corpus = CategorizedCorpus(sentences_train, sentences_dev, sentences_test)
+        return corpus
 
     @staticmethod
     def read_text_classification_file(path_to_file) -> List[Sentence]:
