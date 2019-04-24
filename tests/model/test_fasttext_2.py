@@ -2,9 +2,13 @@ from pathlib import Path
 from unittest import TestCase
 import fastText
 
+from data import CategorizedCorpus
+from data_fetcher import DataFetcher, NLPData
+
 
 class TestFastText(TestCase):
     def test_fasttext(self):
+        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
         hyper_params = {"lr": 0.01,
                         "epoch": 20,
                         "wordNgrams": 3,

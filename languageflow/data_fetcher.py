@@ -1,6 +1,11 @@
 import os
 import shutil
+from enum import Enum
+from typing import Union, List
+
 from tabulate import tabulate
+
+from data import Corpus, CategorizedCorpus, Sentence
 from languageflow.datasets import REPO
 from languageflow.file_utils import cached_path, CACHE_ROOT
 from pathlib import Path
@@ -8,6 +13,9 @@ import zipfile
 
 MISS_URL_ERROR = "Caution:\n  With closed license dataset, you must provide URL to download"
 
+
+class NLPData(Enum):
+    AIVIVN2019_SA = "aivivn2019_sa"
 
 class DataFetcher:
 
@@ -150,3 +158,25 @@ class DataFetcher:
         if cache_dir.is_dir():
             shutil.rmtree(cache_dir)
         print(f"Dataset {data} is removed.")
+
+    @staticmethod
+    def load_corpus(corpus_id: Union[NLPData, str]) -> Corpus:
+        if corpus_id == NLPData.AIVIVN2019_SA:
+            data_folder = Path(CACHE_ROOT) / "aivivn2019_sa"
+            DataFetcher.load_classification_corpus(data_folder)
+
+    @staticmethod
+    def load_classification_corpus(data_folder) -> CategorizedCorpus:
+        train_file = data_folder / "train.txt"
+        dev_file = data_folder / "dev.txt"
+        test_file = data_folder / "test.txt"
+        sentences_train: List[Sentence] = DataFetcher.read_text_classification_file(train_file)
+        sentences_dev: List[Sentence] = DataFetcher.read_text_classification_file(dev_file)
+        sentences_test: List[Sentence] = DataFetcher.read_text_classification_file(test_file)
+
+        return CategorizedCorpus(sentences_train, sentences_dev, sentences_test)
+
+    @staticmethod
+    def read_text_classification_file(path_to_file) -> List[Sentence]:
+        sentences = []
+        return sentences
