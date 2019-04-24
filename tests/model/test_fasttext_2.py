@@ -2,8 +2,8 @@ from pathlib import Path
 from unittest import TestCase
 import fastText
 
-from data import CategorizedCorpus
-from data_fetcher import DataFetcher, NLPData
+from languageflow.data import CategorizedCorpus
+from languageflow.data_fetcher import DataFetcher, NLPData
 
 
 class TestFastText(TestCase):
@@ -13,7 +13,8 @@ class TestFastText(TestCase):
                         "epoch": 20,
                         "wordNgrams": 3,
                         "dim": 20}
-        model = fastText.train_supervised(input="/home/anhv/.languageflow/datasets/aivivn2019_sa/train.txt", **hyper_params)
+        model = fastText.train_supervised(input="/home/anhv/.languageflow/datasets/aivivn2019_sa/train.txt",
+                                          **hyper_params)
         dev_score = model.test("/home/anhv/.languageflow/datasets/aivivn2019_sa/dev.txt")
         test_core = model.test("/home/anhv/.languageflow/datasets/aivivn2019_sa/test.txt")
         print(dev_score)

@@ -1,4 +1,4 @@
-from unittest import TestCase
+from unittest import TestCase, SkipTest
 
 from os.path import join, dirname
 
@@ -6,7 +6,9 @@ from languageflow.api import load
 from languageflow.model.fasttext import FastTextClassifier
 
 
+@SkipTest
 class TestFastText(TestCase):
+
     def test_fasttext(self):
         clf = FastTextClassifier()
         clf.fit(['x', 'y'], ['a', 'b'])

@@ -5,7 +5,7 @@ from typing import Union, List
 
 from tabulate import tabulate
 
-from data import Corpus, CategorizedCorpus, Sentence
+from languageflow.data import CategorizedCorpus, Sentence, Corpus
 from languageflow.datasets import REPO
 from languageflow.file_utils import cached_path, CACHE_ROOT
 from pathlib import Path
