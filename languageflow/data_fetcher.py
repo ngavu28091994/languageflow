@@ -6,10 +6,13 @@ from languageflow.file_utils import cached_path, CACHE_ROOT
 from pathlib import Path
 import zipfile
 
+MISS_URL_ERROR = "Caution:\n  With closed license dataset, you must provide URL to download"
+
 
 class DataFetcher:
+
     @staticmethod
-    def download_data(data):
+    def download_data(data, url):
         if data not in REPO:
             print(f"No matching distribution found for '{data}'")
             return
@@ -48,8 +51,63 @@ class DataFetcher:
             zip.extractall(cache_folder)
             os.remove(filepath)
 
+        if data == "VLSP2013-WTK":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2013-WTK.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
+        if data == "VLSP2013-POS":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2013-POS.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
+        if data == "VTB-CHUNK":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VTB-CHUNK.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
+        if data == "VLSP2016-NER":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2016-NER.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
+        if data == "VLSP2018-NER":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2018-NER.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
     @staticmethod
-    def list():
+    def list(all):
         datasets = []
         for key in REPO:
             name = key
@@ -57,8 +115,27 @@ class DataFetcher:
             license = REPO[key]["license"]
             year = REPO[key]["year"]
             directory = REPO[key]["cache_dir"]
+            if not all:
+                if license == "Close":
+                    continue
+            if license == "Close":
+                license = "Close*"
             datasets.append([name, type, license, year, directory])
 
         print(tabulate(datasets,
                        headers=["Name", "Type", "License", "Year", "Directory"],
                        tablefmt='orgtbl'))
+
+        if all:
+            print(f"\n{MISS_URL_ERROR}")
+
+    @staticmethod
+    def remove(data):
+        if data not in REPO:
+            print(f"No matching distribution found for '{data}'")
+            return
+        dataset = REPO[data]
+        cache_dir = Path(CACHE_ROOT) / dataset["cache_dir"]
+        if cache_dir.is_dir():
+            shutil.rmtree(cache_dir)
+        print(f"Dataset {data} is removed.")

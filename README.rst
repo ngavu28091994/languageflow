@@ -55,7 +55,13 @@ Download a dataset using **download** command
 
 .. code-block:: bash
 
-    $ languageflow download [DATA]
+    $ languageflow download DATASET
+
+List all dataset
+
+.. code-block:: bash
+
+    $ languageflow list
 
 
 Datasets
