@@ -61,5 +61,12 @@ REPO = {
         "license": "Close",
         "year": "2018",
         "filepath": ""
+    },
+    "AIVIVN2019_SA": {
+        "cache_dir": "datasets/aivivn2019_sa",
+        "type": "Categorized",
+        "license": "Close",
+        "year": "2019",
+        "filepath": ""
     }
 }
