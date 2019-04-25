@@ -2,7 +2,7 @@ from languageflow.data import Corpus
 from languageflow.models.text_classifier import TextClassifier
 import shutil
 import tempfile
-from os.path import dirname
+from os.path import join
 from pathlib import Path
 import fastText
 
@@ -28,6 +28,10 @@ class ModelTrainer:
         dev_score = model.test(str(dev_file))
         test_core = model.test(str(test_file))
         shutil.rmtree(tmp_data_folder)
+
+        path_to_file = join(model_folder, "model.bin")
+        model.save_model(path_to_file)
+        print(f"Model is saved in {path_to_file}")
 
         print(dev_score)
         print(test_core)

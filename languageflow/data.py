@@ -25,7 +25,10 @@ class Label:
 
     @score.setter
     def score(self, score):
-        self._score = score
+        if 0.0 <= score <= 1.0:
+            self._score = score
+        else:
+            self._score = 1.0
 
     def __str__(self):
         return "{} ({})".format(self._value, self._score)
@@ -53,6 +56,14 @@ class Sentence:
         labels_text = " ".join([f"__label__{label.value}" for label in self.labels])
         output = f"{labels_text} {self.text}"
         return output
+
+    def add_labels(self, labels: Union[List[Label], List[str]]):
+        for label in labels:
+            if type(label) == str:
+                label = Label(label)
+            if not self.labels:
+                self.labels = []
+            self.labels.append(label)
 
 
 class PlaintextCorpus(Corpus):
