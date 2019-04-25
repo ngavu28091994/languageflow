@@ -11,7 +11,7 @@ from languageflow.data_fetcher import DataFetcher, NLPData
 
 class TestFastText(TestCase):
     def test_fasttext(self):
-        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
+        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
         hyper_params = {"lr": 0.01,
                         "epoch": 20,
                         "wordNgrams": 3,
