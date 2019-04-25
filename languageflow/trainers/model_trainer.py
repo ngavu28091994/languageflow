@@ -26,7 +26,7 @@ class ModelTrainer:
         self.classifier = classifier
         self.corpus = corpus
 
-    def train(self, model_folder: str):
+    def train(self, model_folder: str, scoring=f1_score):
         metadata = {"estimator": self.classifier.estimator.value}
         if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             hyper_params = {"lr": 0.01,
@@ -72,12 +72,12 @@ class ModelTrainer:
             X_dev = transformer.transform(X_dev)
             y_dev = y_transformer.transform(y_dev)
             y_dev_pred = estimator.predict(X_dev)
-            dev_score = f1_score(y_dev, y_dev_pred, average='macro')
+            dev_score = scoring(y_dev, y_dev_pred)
 
             X_test = transformer.transform(X_test)
             y_test = y_transformer.transform(y_test)
             y_test_pred = estimator.predict(X_test)
-            test_core = f1_score(y_test, y_test_pred, average='macro')
+            test_core = scoring(y_test, y_test_pred)
 
             print("Dev score:", dev_score)
             print("Test score:", test_core)
