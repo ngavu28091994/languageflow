@@ -3,14 +3,14 @@ from tempfile import mkdtemp
 from unittest import TestCase
 from languageflow.data import CategorizedCorpus, Sentence
 from languageflow.data_fetcher import DataFetcher, NLPData
-from languageflow.models.text_classifier import TextClassifier
+from languageflow.models.text_classifier import TextClassifier, TEXT_CLASSIFIER_ESTIMATOR
 from languageflow.trainers.model_trainer import ModelTrainer
 
 
 class TestFastText(TestCase):
     def test_fasttext(self):
         corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
-        classifier = TextClassifier()
+        classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT)
         model_trainer = ModelTrainer(classifier, corpus)
         tmp_model_folder = mkdtemp()
         model_trainer.train(tmp_model_folder)
