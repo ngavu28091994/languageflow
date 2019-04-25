@@ -1,21 +1,25 @@
 import os
+import re
 import shutil
 from enum import Enum
 from typing import Union, List
 
 from tabulate import tabulate
 
-from languageflow.data import CategorizedCorpus, Sentence, Corpus
+from languageflow.data import CategorizedCorpus, Sentence, Corpus, Label
 from languageflow.datasets import REPO
 from languageflow.file_utils import cached_path, CACHE_ROOT
 from pathlib import Path
 import zipfile
 
 MISS_URL_ERROR = "Caution:\n  With closed license dataset, you must provide URL to download"
+SAMPLE_CACHE_ROOT = Path(__file__).parent.absolute() / "data"
 
 
 class NLPData(Enum):
     AIVIVN2019_SA = "aivivn2019_sa"
+    AIVIVN2019_SA_SAMPLE = "aivivn2019_sa_sample"
+
 
 class DataFetcher:
 
@@ -162,8 +166,12 @@ class DataFetcher:
     @staticmethod
     def load_corpus(corpus_id: Union[NLPData, str]) -> Corpus:
         if corpus_id == NLPData.AIVIVN2019_SA:
-            data_folder = Path(CACHE_ROOT) / "aivivn2019_sa"
-            DataFetcher.load_classification_corpus(data_folder)
+            data_folder = Path(CACHE_ROOT) / "datasets" / "aivivn2019_sa"
+            return DataFetcher.load_classification_corpus(data_folder)
+
+        if corpus_id == NLPData.AIVIVN2019_SA_SAMPLE:
+            data_folder = SAMPLE_CACHE_ROOT / "aivivn2019_sa_sample"
+            return DataFetcher.load_classification_corpus(data_folder)
 
     @staticmethod
     def load_classification_corpus(data_folder) -> CategorizedCorpus:
@@ -179,4 +187,13 @@ class DataFetcher:
     @staticmethod
     def read_text_classification_file(path_to_file) -> List[Sentence]:
         sentences = []
+        with open(path_to_file) as f:
+            lines = f.read().splitlines()
+            for line in lines:
+                label_pattern = r"__label__(?P<label>\w+)"
+                labels = re.findall(label_pattern, line)
+                labels = [Label(label) for label in labels]
+                text = re.sub(label_pattern, "", line)
+                s = Sentence(text, labels)
+                sentences.append(s)
         return sentences

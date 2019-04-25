@@ -1,12 +1,58 @@
-from typing import List
+from pathlib import Path
+from typing import List, Union
 
 
 class Corpus:
     pass
 
 
+class Label:
+    def __init__(self, value: str, score: float = 1.0):
+        self.value = value
+        self.score = score
+
+    @property
+    def value(self):
+        return self._value
+
+    @property
+    def score(self):
+        return self._score
+
+    @value.setter
+    def value(self, value):
+        self._value = value
+
+    @score.setter
+    def score(self, score):
+        self._score = score
+
+    def __str__(self):
+        return "{} ({})".format(self._value, self._score)
+
+    def __repr__(self):
+        return "{} ({})".format(self._value, self._score)
+
+
 class Sentence:
-    pass
+    def __init__(
+        self,
+        text: str = None,
+        labels: Union[List[Label], List[str]] = None
+    ):
+        self.text = text
+        self.labels = labels
+
+    def __str__(self) -> str:
+        return f'Sentence: "{self.text}" - Labels: {self.labels}'
+
+    def __repr__(self) -> str:
+        return f'Sentence: "{self.text}" - Labels: {self.labels}'
+
+    def to_text_classification_format(self) -> str:
+        labels_text = " ".join([f"__label__{label.value}" for label in self.labels])
+        output = f"{labels_text} {self.text}"
+        return output
 
 
 class PlaintextCorpus(Corpus):
@@ -36,6 +82,23 @@ class CategorizedCorpus(Corpus):
     @property
     def test(self) -> List[Sentence]:
         return self._test
+
+    def __str__(self) -> str:
+        return "CategorizedCorpus: %d train + %d dev + %d test sentences" % (
+            len(self.train),
+            len(self.dev),
+            len(self.test),
+        )
+
+    def save(self, data_folder: str):
+        self.save_sentences(self._train, f"{data_folder}/train.txt")
+        self.save_sentences(self._dev, f"{data_folder}/dev.txt")
+        self.save_sentences(self._test, f"{data_folder}/test.txt")
+
+    def save_sentences(self, sentences: List[Sentence], path_to_file: Union[Path, str]):
+        with open(path_to_file, "w") as f:
+            for sentence in sentences:
+                f.write(sentence.to_text_classification_format() + "\n")
 
 
 class TaggedCorpus(Corpus):
