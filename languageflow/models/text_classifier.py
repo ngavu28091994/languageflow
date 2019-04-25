@@ -1,7 +1,8 @@
 from enum import Enum
 from os.path import join
-
+import json
 import fastText
+import joblib
 
 from languageflow.data import Sentence, Label
 
@@ -11,8 +12,8 @@ class Model:
 
 
 class TEXT_CLASSIFIER_ESTIMATOR(Enum):
-    FAST_TEXT = "fast_text"
-    SVC = "svc"
+    FAST_TEXT = "FAST_TEXT"
+    SVC = "SVC"
 
 
 class TextClassifier(Model):
@@ -26,10 +27,27 @@ class TextClassifier(Model):
 
     @staticmethod
     def load(model_folder):
-        model_file = join(model_folder, "model.bin")
-        classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT)
-        classifier.ft = fastText.load_model(model_file)
-        return classifier
+        with open(join(model_folder, "metadata.json")) as f:
+            metadata = json.loads(f.read())
+        if metadata['estimator'] == 'SVC':
+            estimator = TEXT_CLASSIFIER_ESTIMATOR.SVC
+        if metadata['estimator'] == 'FAST_TEXT':
+            estimator = TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT
+
+        if estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
+            model_file = join(model_folder, "model.bin")
+            classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT)
+            classifier.ft = fastText.load_model(model_file)
+            return classifier
+
+        if estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
+            classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.SVC)
+            classifier.svc = joblib.load(join(model_folder, "estimator.joblib"))
+            x_transformer = joblib.load(join(model_folder, "x_transformer.joblib"))
+            classifier.x_transformer = x_transformer
+            y_transformer = joblib.load(join(model_folder, "y_transformer.joblib"))
+            classifier.y_transformer = y_transformer
+            return classifier
 
     def predict(self, sentence: Sentence):
         if self.estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
@@ -40,3 +58,10 @@ class TextClassifier(Model):
                 label = Label(value, score)
                 labels.append(label)
             sentence.add_labels(labels)
+
+        if self.estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
+            text = sentence.text
+            X = self.x_transformer.transform([text])
+            y = self.svc.predict(X)
+            y = self.y_transformer.inverse_transform(y)
+            sentence.add_labels(y)

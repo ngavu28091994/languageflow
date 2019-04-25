@@ -22,7 +22,8 @@ install_requirements = [
     'tabulate',
     'clint',
     'tqdm',
-    'scikit-learn==0.20.3'
+    'scikit-learn==0.20.3',
+    'joblib==0.13.2'
 ]
 
 setup_requirements = []
