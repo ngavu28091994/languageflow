@@ -21,7 +21,8 @@ install_requirements = [
     'requests',
     'tabulate',
     'clint',
-    'tqdm'
+    'tqdm',
+    'scikit-learn==0.20.3'
 ]
 
 setup_requirements = []

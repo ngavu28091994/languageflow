@@ -12,6 +12,7 @@ class Model:
 
 class TEXT_CLASSIFIER_ESTIMATOR(Enum):
     FAST_TEXT = "fast_text"
+    SVC = "svc"
 
 
 class TextClassifier(Model):
@@ -20,6 +21,8 @@ class TextClassifier(Model):
         self.estimator = estimator
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             self.ft = None
+        if estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
+            self.svc = None
 
     @staticmethod
     def load(model_folder):
