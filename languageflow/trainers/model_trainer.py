@@ -26,7 +26,7 @@ class ModelTrainer:
         self.classifier = classifier
         self.corpus = corpus
 
-    def train(self, model_folder: str):
+    def train(self, model_folder: str, scoring=f1_score):
         metadata = {"estimator": self.classifier.estimator.value}
         if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             hyper_params = {"lr": 0.01,
@@ -56,7 +56,7 @@ class ModelTrainer:
             X_train, y_train = train
             X_dev, y_dev = dev
             X_test, y_test = test
-            transformer = CountVectorizer(ngram_range=(1, 3), max_features=4000)
+            transformer = self.classifier.params['vectorizer']
 
             X_train = transformer.fit_transform(X_train)
             joblib.dump(transformer, join(model_folder, "x_transformer.joblib"))
@@ -65,19 +65,19 @@ class ModelTrainer:
             y_train = y_transformer.fit_transform(y_train)
             joblib.dump(y_transformer, join(model_folder, "y_transformer.joblib"))
 
-            estimator = SVC(kernel='linear', C=0.3)
+            estimator = self.classifier.params['svc']
             estimator.fit(X_train, y_train)
             joblib.dump(estimator, join(model_folder, "estimator.joblib"))
 
             X_dev = transformer.transform(X_dev)
             y_dev = y_transformer.transform(y_dev)
             y_dev_pred = estimator.predict(X_dev)
-            dev_score = f1_score(y_dev, y_dev_pred, average='macro')
+            dev_score = scoring(y_dev, y_dev_pred)
 
             X_test = transformer.transform(X_test)
             y_test = y_transformer.transform(y_test)
             y_test_pred = estimator.predict(X_test)
-            test_core = f1_score(y_test, y_test_pred, average='macro')
+            test_core = scoring(y_test, y_test_pred)
 
             print("Dev score:", dev_score)
             print("Test score:", test_core)
