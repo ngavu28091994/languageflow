@@ -68,5 +68,12 @@ REPO = {
         "license": "Close",
         "year": "2019",
         "filepath": ""
+    },
+    "VLSP2016_SA": {
+        "cache_dir": "datasets/vlsp2016_sa",
+        "type": "Categorized",
+        "license": "Close",
+        "year": "2016",
+        "filepath": ""
     }
 }
