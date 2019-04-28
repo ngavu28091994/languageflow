@@ -29,20 +29,25 @@ class ModelTrainer:
     def train(self, model_folder: str, scoring=f1_score):
         score = {}
         metadata = {"estimator": self.classifier.estimator.value}
+        train, dev, test = self._convert_corpus(self.corpus)
+        X_train, y_train = train
+        X_dev, y_dev = dev
+        X_test, y_test = test
         if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
-            hyper_params = {"lr": 0.01,
-                            "epoch": 20,
-                            "wordNgrams": 3,
-                            "dim": 20}
+            hyper_params = self.classifier.params
             tmp_data_folder = tempfile.mkdtemp()
 
             self.corpus.save(tmp_data_folder)
             train_file = Path(tmp_data_folder) / "train.txt"
-            dev_file = Path(tmp_data_folder) / "dev.txt"
-            test_file = Path(tmp_data_folder) / "test.txt"
             model = fastText.train_supervised(input=str(train_file), **hyper_params)
-            dev_score = model.test(str(dev_file))
-            test_core = model.test(str(test_file))
+            y_dev_pred = [item[0].replace("__label__", "") for item in model.predict(X_dev)[0]]
+            y_dev = [s.labels[0].value for s in self.corpus.dev]
+            dev_score = scoring(y_dev, y_dev_pred)
+
+            y_test_pred = [item[0].replace("__label__", "") for item in model.predict(X_test)[0]]
+            y_test = [s.labels[0].value for s in self.corpus.dev]
+            test_score = scoring(y_test, y_test_pred)
+
             shutil.rmtree(tmp_data_folder)
 
             path_to_file = join(model_folder, "model.bin")
@@ -50,13 +55,11 @@ class ModelTrainer:
             print(f"Model is saved in {path_to_file}")
 
             print("Dev score:", dev_score)
-            print("Test score:", test_core)
+            print("Test score:", test_score)
+            score["dev_score"] = dev_score
+            score["test_score"] = test_score
 
         if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
-            train, dev, test = self._convert_corpus(self.corpus)
-            X_train, y_train = train
-            X_dev, y_dev = dev
-            X_test, y_test = test
             transformer = self.classifier.params['vectorizer']
 
             X_train = transformer.fit_transform(X_train)
