@@ -14,8 +14,8 @@ from languageflow.trainers.model_trainer import ModelTrainer
 
 class TestSVC(TestCase):
     def test(self):
-        # corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
-        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
+        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
+        # corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
         params = {
             "vectorizer": CountVectorizer(ngram_range=(1, 2), max_features=4000),
             "svc": SVC(kernel='linear', C=0.3)
@@ -31,7 +31,8 @@ class TestSVC(TestCase):
         def macro_f1_score(y_true, y_pred):
             return f1_score(y_true, y_pred, average='macro')
 
-        model_trainer.train(tmp_model_folder, scoring=macro_f1_score)
+        score = model_trainer.train(tmp_model_folder, scoring=negative_f1_score)
+        print(score)
 
         classifier = TextClassifier.load(tmp_model_folder)
         sentence = Sentence('tuyệt vời')

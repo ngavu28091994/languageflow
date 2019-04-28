@@ -27,6 +27,7 @@ class ModelTrainer:
         self.corpus = corpus
 
     def train(self, model_folder: str, scoring=f1_score):
+        score = {}
         metadata = {"estimator": self.classifier.estimator.value}
         if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             hyper_params = {"lr": 0.01,
@@ -77,13 +78,15 @@ class ModelTrainer:
             X_test = transformer.transform(X_test)
             y_test = y_transformer.transform(y_test)
             y_test_pred = estimator.predict(X_test)
-            test_core = scoring(y_test, y_test_pred)
-
+            test_score = scoring(y_test, y_test_pred)
+            score["dev_score"] = dev_score
+            score["test_score"] = test_score
             print("Dev score:", dev_score)
-            print("Test score:", test_core)
+            print("Test score:", test_score)
         with open(join(model_folder, "metadata.json"), "w") as f:
             content = json.dumps(metadata, ensure_ascii=False)
             f.write(content)
+        return score
 
     def _convert_corpus(self, corpus: Corpus):
         X_train = [s.text for s in corpus.train]
