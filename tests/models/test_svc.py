@@ -2,7 +2,9 @@ import shutil
 from tempfile import mkdtemp
 from unittest import TestCase
 
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import f1_score
+from sklearn.svm import SVC
 
 from languageflow.data import CategorizedCorpus, Sentence
 from languageflow.data_fetcher import DataFetcher, NLPData
@@ -12,10 +14,13 @@ from languageflow.trainers.model_trainer import ModelTrainer
 
 class TestSVC(TestCase):
     def test(self):
-        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
-        # corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
-
-        classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.SVC)
+        # corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA_SAMPLE)
+        corpus: CategorizedCorpus = DataFetcher.load_corpus(NLPData.AIVIVN2019_SA)
+        params = {
+            "vectorizer": CountVectorizer(ngram_range=(1, 2), max_features=4000),
+            "svc": SVC(kernel='linear', C=0.3)
+        }
+        classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.SVC, **params)
         model_trainer = ModelTrainer(classifier, corpus)
         tmp_model_folder = mkdtemp()
 
