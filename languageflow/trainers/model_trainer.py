@@ -86,6 +86,22 @@ class ModelTrainer:
             score["test_score"] = test_score
             print("Dev score:", dev_score)
             print("Test score:", test_score)
+
+        if self.classifier.estimator == TEXT_CLASSIFIER_ESTIMATOR.PIPELINE:
+            pipeline = self.classifier.pipeline
+            pipeline.fit(X_train, y_train)
+            joblib.dump(pipeline, join(model_folder, "pipeline.joblib"))
+
+            y_dev_pred = pipeline.predict(X_dev)
+            dev_score = scoring(y_dev, y_dev_pred)
+
+            y_test_pred = pipeline.predict(X_test)
+            test_score = scoring(y_test, y_test_pred)
+            score["dev_score"] = dev_score
+            score["test_score"] = test_score
+            print("Dev score:", dev_score)
+            print("Test score:", test_score)
+
         with open(join(model_folder, "metadata.json"), "w") as f:
             content = json.dumps(metadata, ensure_ascii=False)
             f.write(content)

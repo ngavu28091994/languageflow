@@ -14,17 +14,22 @@ class Model:
 class TEXT_CLASSIFIER_ESTIMATOR(Enum):
     FAST_TEXT = "FAST_TEXT"
     SVC = "SVC"
+    PIPELINE = "PIPELINE"
 
 
 class TextClassifier(Model):
 
     def __init__(self, estimator: TEXT_CLASSIFIER_ESTIMATOR, **params):
         self.estimator = estimator
-        self.params = params
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             self.ft = None
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
             self.svc = None
+        if estimator == TEXT_CLASSIFIER_ESTIMATOR.PIPELINE:
+            if "pipeline" in params:
+                self.pipeline = params["pipeline"]
+            else:
+                self.pipeline = None
 
     @staticmethod
     def load(model_folder):
@@ -34,6 +39,8 @@ class TextClassifier(Model):
             estimator = TEXT_CLASSIFIER_ESTIMATOR.SVC
         if metadata['estimator'] == 'FAST_TEXT':
             estimator = TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT
+        if metadata['estimator'] == 'PIPELINE':
+            estimator = TEXT_CLASSIFIER_ESTIMATOR.PIPELINE
 
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             model_file = join(model_folder, "model.bin")
@@ -48,6 +55,11 @@ class TextClassifier(Model):
             classifier.x_transformer = x_transformer
             y_transformer = joblib.load(join(model_folder, "y_transformer.joblib"))
             classifier.y_transformer = y_transformer
+            return classifier
+
+        if estimator == TEXT_CLASSIFIER_ESTIMATOR.PIPELINE:
+            classifier = TextClassifier(estimator=TEXT_CLASSIFIER_ESTIMATOR.PIPELINE)
+            classifier.pipeline = joblib.load(join(model_folder, "pipeline.joblib"))
             return classifier
 
     def predict(self, sentence: Sentence):
@@ -65,4 +77,10 @@ class TextClassifier(Model):
             X = self.x_transformer.transform([text])
             y = self.svc.predict(X)
             y = self.y_transformer.inverse_transform(y)
+            sentence.add_labels(y)
+
+        if self.estimator == TEXT_CLASSIFIER_ESTIMATOR.PIPELINE:
+            text = sentence.text
+            y = self.pipeline.predict([text])
+            y = list(y)
             sentence.add_labels(y)
