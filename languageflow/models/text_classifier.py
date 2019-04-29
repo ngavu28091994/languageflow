@@ -21,6 +21,7 @@ class TextClassifier(Model):
 
     def __init__(self, estimator: TEXT_CLASSIFIER_ESTIMATOR, **params):
         self.estimator = estimator
+        self.params = params
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.FAST_TEXT:
             self.ft = None
         if estimator == TEXT_CLASSIFIER_ESTIMATOR.SVC:
