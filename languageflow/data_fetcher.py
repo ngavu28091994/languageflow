@@ -129,6 +129,29 @@ class DataFetcher:
             zip.extractall(cache_folder)
             os.remove(filepath)
 
+
+        if data == "VLSP2016_SA":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2016_SA.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
+        if data == "VLSP2018_SA":
+            if not url:
+                print(f"\n{MISS_URL_ERROR}")
+                return
+            cached_path(url, cache_dir=cache_dir)
+            filepath = Path(CACHE_ROOT) / cache_dir / "VLSP2018_SA.zip?dl=1"
+            cache_folder = Path(CACHE_ROOT) / cache_dir
+            zip = zipfile.ZipFile(filepath)
+            zip.extractall(cache_folder)
+            os.remove(filepath)
+
     @staticmethod
     def list(all):
         datasets = []
