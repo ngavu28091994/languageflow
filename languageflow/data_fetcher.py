@@ -21,7 +21,9 @@ class NLPData(Enum):
     AIVIVN2019_SA_SAMPLE = "aivivn2019_sa_sample"
     UTS2017_BANK_SA = "uts2017_bank_sa"
     UTS2017_BANK_TC = "uts2017_bank_tc"
+    UTS2017_BANK_SA_SAMPLE = "uts2017_bank_sa_sample"
     VLSP2016_SA = "vlsp2016_sa"
+    VNTC = "VNTC"
 
 
 class DataFetcher:
@@ -211,6 +213,10 @@ class DataFetcher:
             data_folder = Path(CACHE_ROOT) / "datasets" / "uts2017_bank"
             return DataFetcher.load_classification_corpus(data_folder)
 
+        if corpus_id == NLPData.UTS2017_BANK_SA_SAMPLE:
+            data_folder = SAMPLE_CACHE_ROOT / "uts2017_bank_sample"
+            return DataFetcher.load_classification_corpus(data_folder)
+
         if corpus_id == NLPData.UTS2017_BANK_TC:
             data_folder = Path(CACHE_ROOT) / "datasets" / "uts2017_bank"
             corpus = DataFetcher.load_classification_corpus(data_folder)
@@ -218,6 +224,11 @@ class DataFetcher:
 
         if corpus_id == NLPData.VLSP2016_SA:
             data_folder = Path(CACHE_ROOT) / "datasets" / "vlsp2016_sa"
+            corpus = DataFetcher.load_classification_corpus(data_folder)
+            return DataFetcher.__exact_aspect_labels(corpus)
+
+        if corpus_id == NLPData.VNTC:
+            data_folder = Path(CACHE_ROOT) / "datasets" / "VNTC"
             corpus = DataFetcher.load_classification_corpus(data_folder)
             return DataFetcher.__exact_aspect_labels(corpus)
 
@@ -275,3 +286,12 @@ class DataFetcher:
                 s = Sentence(text, labels)
                 sentences.append(s)
         return sentences
+
+    @staticmethod
+    def import_corpus(corpus_id: str, input_data_path: str):
+        if corpus_id not in REPO:
+            print(f"No matching distribution found for '{corpus_id}'")
+            return
+        if corpus_id == "VLSP2016_SA":
+            from languageflow.corpus.vlsp2016_sa_corpus import VLSP2016SACorpus
+            VLSP2016SACorpus.import_data(input_data_path)
