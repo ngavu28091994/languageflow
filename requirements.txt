@@ -10,4 +10,4 @@ pandas==0.20.3
 clint==0.5.1
 python_crfsuite==0.9.6
 scikit_learn==0.19.2
-PyYAML==3.13
+PyYAML==5.1
