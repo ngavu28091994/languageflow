@@ -13,7 +13,7 @@ import shutil
 import tempfile
 from os.path import join
 from pathlib import Path
-import fastText
+import fasttext
 import joblib
 
 
