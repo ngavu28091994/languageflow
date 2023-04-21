@@ -23,7 +23,7 @@ install_requirements = [
     'clint',
     'tqdm',
     'scikit-learn==0.20.3',
-    'joblib==0.13.2'
+    'joblib==1.1.1'
 ]
 
 setup_requirements = []
